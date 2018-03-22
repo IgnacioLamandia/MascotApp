@@ -1,6 +1,6 @@
 # MascotApp
-Trabajo de Inserción Profesional de la Tecnicatura Universitaria en Programación informática de la Universidad Nacional de Quilmes realizado los alumnos Ignacio Lamandia y Jeremías Tomé
+Trabajo de Inserción Profesional de la Tecnicatura Universitaria en Programación informática de la Universidad Nacional de Quilmes realizado los alumnos Ignacio Lamandia y Jeremías Tomé.
 
-https://tree.taiga.io/project/ignaciolamandia-mascotapp/
+Backlog: https://tree.taiga.io/project/ignaciolamandia-mascotapp/backlog
 
-https://travis-ci.org/IgnacioLamandia/MascotApp
+CI: https://travis-ci.org/IgnacioLamandia/MascotApp
