@@ -3,4 +3,4 @@ Trabajo de Inserci√≥n Profesional de la Tecnicatura Universitaria en Programaci√
 
 Backlog: https://tree.taiga.io/project/ignaciolamandia-mascotapp/backlog
 
-CI: https://travis-ci.org/IgnacioLamandia/MascotApp
+CI: https://travis-ci.org/IgnacioLamandia/MascotApp   ![Build Status](https://travis-ci.org/IgnacioLamandia/MascotApp.svg?branch=master)
