@@ -7,8 +7,73 @@
   <version>1.0-SNAPSHOT</version>
   <name>mascotapp-backend Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <springframework.version>4.2.4.RELEASE</springframework.version>
+    
+  </properties>
+  
+   <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.8.RELEASE</version>
+    </parent>
+
   <dependencies>
+	<dependency>
+   		<groupId>org.springframework</groupId>
+   		<artifactId>spring-core</artifactId>
+   		<version>${spring.version}</version>
+  	</dependency>
+  	<dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-mail</artifactId>
+    	<version>1.5.7.RELEASE</version>
+	</dependency>
+  	<dependency>
+  		 <groupId>org.springframework</groupId>
+ 		 <artifactId>spring-webmvc</artifactId>
+  		 <version>${spring.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.fasterxml.jackson.core</groupId>
+   		<artifactId>jackson-databind</artifactId>
+   		<version>2.7.2</version>
+  	</dependency>
+  	<dependency>
+    <groupId>com.fasterxml.jackson.module</groupId>
+    <artifactId>jackson-module-parameter-names</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.fasterxml.jackson.datatype</groupId>
+    <artifactId>jackson-datatype-jdk8</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.fasterxml.jackson.datatype</groupId>
+    <artifactId>jackson-datatype-jsr310</artifactId>
+</dependency>
+  	
+  	  <!-- Spring ORM -->
   <dependency>
+   <groupId>org.springframework</groupId>
+   <artifactId>spring-orm</artifactId>
+   <version>${spring.version}</version>
+  </dependency>
+  	
+
+	<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+	</dependency>
+
+  <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>22.0</version>
+    </dependency>
+	
+	<dependency>
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
 		<version>5.1.39</version>
@@ -18,14 +83,95 @@
 	    <artifactId>hibernate-core</artifactId>
 	    <version>5.2.2.Final</version>
 	</dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
+    
+    <dependency>
+	    <groupId>io.jsonwebtoken</groupId>
+	    <artifactId>jjwt</artifactId>
+	    <version>0.7.0</version>
+	</dependency>
+	
+	<!-- Spring -->
+	    <dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-starter-web</artifactId>
+    	</dependency>
+
+	<dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  
   </dependencies>
   <build>
-    <finalName>mascotapp-backend</finalName>
+  <plugins>
+<plugin>
+				<!-- Allows to build an assembly JAR -->
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>service.MascotApp.java</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+  <plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.3.11.v20160721</version>
+				<configuration>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<connectors>
+						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+							<port>8080</port>
+							<maxIdleTime>60000</maxIdleTime>
+						</connector>
+					</connectors>
+				</configuration>
+			</plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+			
+    
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.6.1</version>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    <finalName>MascotApp</finalName>
   </build>
 </project>
