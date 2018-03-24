@@ -21,9 +21,7 @@
 		
 		<property name="hibernate.hbm2ddl.auto">create-drop</property>
 
-		<!-- <mapping class="model.xxx" /> -->
-		
-		
+		<mapping class="model.Publicacion" /> 
 		
 	</session-factory>
 </hibernate-configuration>
