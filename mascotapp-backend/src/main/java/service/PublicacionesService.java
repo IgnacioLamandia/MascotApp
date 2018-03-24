@@ -16,7 +16,7 @@ public class PublicacionesService {
 	private HibernatePublicacionDAO publiDAO;
 	
 	public PublicacionesService() {
-		publiDAO=new HibernatePublicacionDAO();
+		publiDAO = new HibernatePublicacionDAO();
 	}
 	
 	@Transactional
