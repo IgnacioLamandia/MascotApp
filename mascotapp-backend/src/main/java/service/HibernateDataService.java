@@ -8,18 +8,26 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import persistance.HibernatePublicacionDAO;
 import model.Categoria;
 import model.Encoder;
 import model.Publicacion;
 
+@Repository
 public class HibernateDataService {
 	
 	HibernatePublicacionDAO publiDAO = new HibernatePublicacionDAO();
+	
+	@Autowired
+	public HibernateDataService() {
+	}
 
 	public void createDatosIniciales() throws IOException {
 		List<BufferedImage> imgs= new ArrayList<BufferedImage>();
-		File folder = new File("/home/ignacio/Escritorio/images");
+		File folder = new File("./images");
 		File[] listOfFiles = folder.listFiles();
 
 		for (File file : listOfFiles) {
