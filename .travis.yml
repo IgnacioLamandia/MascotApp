@@ -4,3 +4,8 @@ jdk:
   - oraclejdk8
 install:
   - cd mascotapp-backend && mvn clean install -Dmaven.compiler.target=1.8 -Dmaven.compiler.source=1.8
+deploy:
+  - provider: heroku
+    skip_cleanup: true
+    api_key: 6813f888-06ed-4f94-88c0-8653484eec5d
+app: mascotapp-backend
