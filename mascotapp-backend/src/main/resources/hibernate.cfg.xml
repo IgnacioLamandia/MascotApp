@@ -21,7 +21,7 @@
 		
 		<property name="hibernate.hbm2ddl.auto">create-drop</property>
 
-		<mapping class="model.Publicacion" /> 
+		<mapping class="model.Post" /> 
 		
 	</session-factory>
 </hibernate-configuration>

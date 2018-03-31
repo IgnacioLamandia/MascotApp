@@ -8,9 +8,9 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import model.Categoria;
+import model.Category;
 import model.Encoder;
-import model.Publicacion;
+import model.Post;
 import persistance.HibernatePublicacionDAO;
 
 public class HibernateDataService {
@@ -27,10 +27,10 @@ public class HibernateDataService {
 		        imgs.add(ImageIO.read(file));
 		    }
 		}
-		Publicacion publi1 = new Publicacion("Perro perdido",Encoder.encode(imgs.get(0), "jpg"),0,0,"Calle 5 y 159",Categoria.PERDIDO);
-		Publicacion publi2 = new Publicacion("Busco Perro",Encoder.encode(imgs.get(1), "jpg"),0,0,"Calle 5 y 159",Categoria.BUSCO);
-		Publicacion publi3 = new Publicacion("Perro lastimado",Encoder.encode(imgs.get(2), "jpg"),0,0,"Calle 5 y 159",Categoria.LASTIMADO);
-		Publicacion publi4 = new Publicacion("Perro callejero busca familia",Encoder.encode(imgs.get(3), "jpg"),0,0,"Calle 5 y 159",Categoria.CALLEJERO);
+		Post publi1 = new Post("Perro perdido",Encoder.encode(imgs.get(0), "jpg"),0,0,"Calle 5 y 159",Category.PERDIDO);
+		Post publi2 = new Post("Busco Perro",Encoder.encode(imgs.get(1), "jpg"),0,0,"Calle 5 y 159",Category.BUSCO);
+		Post publi3 = new Post("Perro lastimado",Encoder.encode(imgs.get(2), "jpg"),0,0,"Calle 5 y 159",Category.LASTIMADO);
+		Post publi4 = new Post("Perro callejero busca familia",Encoder.encode(imgs.get(3), "jpg"),0,0,"Calle 5 y 159",Category.CALLEJERO);
 		
 		publiDAO.save(publi1);
 		publiDAO.save(publi2);

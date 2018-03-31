@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import persistance.HibernatePublicacionDAO;
-import model.Publicacion;
+import model.Post;
 
 @Service("publicacionesService")
 public class PublicacionesService {
@@ -20,13 +20,13 @@ public class PublicacionesService {
 	}
 	
 	@Transactional
-	public void save(Publicacion publicacion) {	
-		publiDAO.save(publicacion);			
+	public void save(Post post) {	
+		publiDAO.save(post);			
 	}
 
 	@Transactional
-	public void update(Publicacion publicacion) {	
-		publiDAO.update(publicacion);		
+	public void update(Post post) {	
+		publiDAO.update(post);		
 	}
 
 	@Transactional
@@ -35,12 +35,12 @@ public class PublicacionesService {
 	}
 
 	@Transactional
-	public Publicacion getById(Long id) {
+	public Post getById(Long id) {
 		return publiDAO.getById(id);
 	}
 
 	@Transactional
-	public List<Publicacion> getAll() {	
+	public List<Post> getAll() {	
 		return publiDAO.getAll();
 	}
 

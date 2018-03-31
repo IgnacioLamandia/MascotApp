@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import model.Publicacion;
+import model.Post;
 import service.HibernateDataService;
 
 public class PublicacionDAOTestCase {
@@ -27,7 +27,7 @@ public class PublicacionDAOTestCase {
 	
 	@Test
 	public void testGetAllEntrenador() {
-		Collection<Publicacion> publicaciones = this.dao.getAll();		
+		Collection<Post> publicaciones = this.dao.getAll();		
 		Assert.assertEquals(4, publicaciones.size());
 	}
 }

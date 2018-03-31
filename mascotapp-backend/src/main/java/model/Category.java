@@ -1,6 +1,6 @@
 package model;
 
-public enum Categoria {	
+public enum Category {	
 	BUSCO,
 	PERDIDO,
 	LASTIMADO,
