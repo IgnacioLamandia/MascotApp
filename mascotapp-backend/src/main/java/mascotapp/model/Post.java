@@ -1,4 +1,4 @@
-package model;
+package mascotapp.model;
 
 
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package model;
+package mascotapp.model;
 
 public enum Category {	
 	BUSCO,

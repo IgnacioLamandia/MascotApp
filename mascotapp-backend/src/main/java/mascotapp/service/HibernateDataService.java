@@ -1,4 +1,4 @@
-package service;
+package mascotapp.service;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -8,10 +8,10 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import model.Category;
-import model.Encoder;
-import model.Post;
-import persistance.HibernatePostDAO;
+import mascotapp.model.Category;
+import mascotapp.model.Encoder;
+import mascotapp.model.Post;
+import mascotapp.persistance.HibernatePostDAO;
 
 public class HibernateDataService {
 	

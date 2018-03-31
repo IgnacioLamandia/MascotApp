@@ -1,4 +1,4 @@
-package service;
+package mascotapp;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import service.HibernateDataService;
+import mascotapp.service.HibernateDataService;
 
 @Configuration
 @SpringBootApplication

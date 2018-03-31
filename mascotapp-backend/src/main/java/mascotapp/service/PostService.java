@@ -1,4 +1,4 @@
-package service;
+package mascotapp.service;
 
 import java.util.List;
 
@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import persistance.HibernatePostDAO;
-import model.Post;
+import mascotapp.model.Post;
+import mascotapp.persistance.HibernatePostDAO;
 
-@Service("publicacionesService")
+@Service("postService")
 public class PostService {
 	
 	@Autowired

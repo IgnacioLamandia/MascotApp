@@ -8,8 +8,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import model.Post;
-import service.HibernateDataService;
+import mascotapp.model.Post;
+import mascotapp.persistance.HibernatePostDAO;
+import mascotapp.service.HibernateDataService;
 
 public class PostDAOTestCase {
 

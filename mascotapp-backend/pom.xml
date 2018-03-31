@@ -125,7 +125,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>service.MascotApp.java</mainClass>
+							<mainClass>mascotapp.service.MascotApp.java</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
@@ -150,7 +150,7 @@
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>8080</port>
+							<port>9000</port>
 							<maxIdleTime>60000</maxIdleTime>
 						</connector>
 					</connectors>

@@ -1,4 +1,4 @@
-package model;
+package mascotapp.model;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;

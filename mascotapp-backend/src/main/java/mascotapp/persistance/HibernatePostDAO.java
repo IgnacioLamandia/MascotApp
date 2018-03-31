@@ -1,8 +1,8 @@
-package persistance;
+package mascotapp.persistance;
 
 import org.springframework.stereotype.Repository;
 
-import model.Post;
+import mascotapp.model.Post;
 
 @Repository
 public class HibernatePostDAO extends GenericDAO<Post> {	

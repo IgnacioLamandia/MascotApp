@@ -1,4 +1,4 @@
-package persistance;
+package mascotapp.persistance;
 
 import java.util.List;
 
