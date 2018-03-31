@@ -6,42 +6,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import persistance.HibernatePublicacionDAO;
+import persistance.HibernatePostDAO;
 import model.Post;
 
 @Service("publicacionesService")
-public class PublicacionesService {
+public class PostService {
 	
 	@Autowired
-	private HibernatePublicacionDAO publiDAO;
+	private HibernatePostDAO postDAO;
 	
-	public PublicacionesService() {
-		publiDAO = new HibernatePublicacionDAO();
+	public PostService() {
+		postDAO = new HibernatePostDAO();
 	}
 	
 	@Transactional
 	public void save(Post post) {	
-		publiDAO.save(post);			
+		postDAO.save(post);			
 	}
 
 	@Transactional
 	public void update(Post post) {	
-		publiDAO.update(post);		
+		postDAO.update(post);		
 	}
 
 	@Transactional
 	public void delete(Long id) {	
-		publiDAO.delete(getById(id));				
+		postDAO.delete(getById(id));				
 	}
 
 	@Transactional
 	public Post getById(Long id) {
-		return publiDAO.getById(id);
+		return postDAO.getById(id);
 	}
 
 	@Transactional
 	public List<Post> getAll() {	
-		return publiDAO.getAll();
+		return postDAO.getAll();
 	}
 
 }

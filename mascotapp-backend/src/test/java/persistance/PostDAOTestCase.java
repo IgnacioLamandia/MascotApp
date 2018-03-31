@@ -11,23 +11,23 @@ import org.junit.Test;
 import model.Post;
 import service.HibernateDataService;
 
-public class PublicacionDAOTestCase {
+public class PostDAOTestCase {
 
-	private HibernatePublicacionDAO  dao = new HibernatePublicacionDAO();
+	private HibernatePostDAO  dao = new HibernatePostDAO();
 	private HibernateDataService service = new HibernateDataService();
 	
 	@Before
 	public void setUp() {
 		try {
-			service.createDatosIniciales();
+			service.createInitialData();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	@Test
-	public void testGetAllEntrenador() {
-		Collection<Post> publicaciones = this.dao.getAll();		
-		Assert.assertEquals(4, publicaciones.size());
+	public void itShouldReturnFourPosts() {
+		Collection<Post> posts = this.dao.getAll();		
+		Assert.assertEquals(4, posts.size());
 	}
 }

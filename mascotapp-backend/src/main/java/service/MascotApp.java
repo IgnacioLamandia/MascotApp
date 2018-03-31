@@ -27,7 +27,7 @@ public class MascotApp {
 	HibernateDataService service = new HibernateDataService();
 	
 	public MascotApp() throws IOException {
-		service.createDatosIniciales();
+		service.createInitialData();
 	}
 
 	public static void main(String[] args) {

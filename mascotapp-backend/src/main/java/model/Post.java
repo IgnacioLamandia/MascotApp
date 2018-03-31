@@ -24,8 +24,7 @@ public class Post {
 	@Enumerated(EnumType.ORDINAL)
 	public Category category;
 	
-	public Post() {
-		
+	public Post() {		
 	}
 	
 	public Post(String description, String image, float latitude,

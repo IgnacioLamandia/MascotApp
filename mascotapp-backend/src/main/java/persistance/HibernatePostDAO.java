@@ -5,9 +5,8 @@ import org.springframework.stereotype.Repository;
 import model.Post;
 
 @Repository
-public class HibernatePublicacionDAO extends GenericDAO<Post> {
-	
-	public HibernatePublicacionDAO() {
+public class HibernatePostDAO extends GenericDAO<Post> {	
+	public HibernatePostDAO() {
 		super(Post.class);
 	}
 }

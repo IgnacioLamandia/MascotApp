@@ -11,13 +11,13 @@ import javax.imageio.ImageIO;
 import model.Category;
 import model.Encoder;
 import model.Post;
-import persistance.HibernatePublicacionDAO;
+import persistance.HibernatePostDAO;
 
 public class HibernateDataService {
 	
-	HibernatePublicacionDAO publiDAO = new HibernatePublicacionDAO();
+	HibernatePostDAO postDAO = new HibernatePostDAO();
 
-	public void createDatosIniciales() throws IOException {
+	public void createInitialData() throws IOException {
 		List<BufferedImage> imgs= new ArrayList<BufferedImage>();
 		File folder = new File("./images");
 		File[] listOfFiles = folder.listFiles();
@@ -27,15 +27,16 @@ public class HibernateDataService {
 		        imgs.add(ImageIO.read(file));
 		    }
 		}
-		Post publi1 = new Post("Perro perdido",Encoder.encode(imgs.get(0), "jpg"),0,0,"Calle 5 y 159",Category.PERDIDO);
-		Post publi2 = new Post("Busco Perro",Encoder.encode(imgs.get(1), "jpg"),0,0,"Calle 5 y 159",Category.BUSCO);
-		Post publi3 = new Post("Perro lastimado",Encoder.encode(imgs.get(2), "jpg"),0,0,"Calle 5 y 159",Category.LASTIMADO);
-		Post publi4 = new Post("Perro callejero busca familia",Encoder.encode(imgs.get(3), "jpg"),0,0,"Calle 5 y 159",Category.CALLEJERO);
 		
-		publiDAO.save(publi1);
-		publiDAO.save(publi2);
-		publiDAO.save(publi3);
-		publiDAO.save(publi4);				
+		Post post1 = new Post("Perro perdido",Encoder.encode(imgs.get(0), "jpg"),0,0,"Calle 5 y 159",Category.PERDIDO);
+		Post post2 = new Post("Busco Perro",Encoder.encode(imgs.get(1), "jpg"),0,0,"Calle 5 y 159",Category.BUSCO);
+		Post post3 = new Post("Perro lastimado",Encoder.encode(imgs.get(2), "jpg"),0,0,"Calle 5 y 159",Category.LASTIMADO);
+		Post post4 = new Post("Perro callejero busca familia",Encoder.encode(imgs.get(3), "jpg"),0,0,"Calle 5 y 159",Category.CALLEJERO);
+		
+		postDAO.save(post1);
+		postDAO.save(post2);
+		postDAO.save(post3);
+		postDAO.save(post4);				
 	}
 
 }
