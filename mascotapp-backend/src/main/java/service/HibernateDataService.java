@@ -35,9 +35,7 @@ public class HibernateDataService {
 		publiDAO.save(publi1);
 		publiDAO.save(publi2);
 		publiDAO.save(publi3);
-		publiDAO.save(publi4);
-
-		
+		publiDAO.save(publi4);				
 	}
 
 }

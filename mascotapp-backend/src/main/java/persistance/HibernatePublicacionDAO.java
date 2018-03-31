@@ -10,5 +10,4 @@ public class HibernatePublicacionDAO extends GenericDAO<Publicacion> {
 	public HibernatePublicacionDAO() {
 		super(Publicacion.class);
 	}
-
 }

@@ -23,7 +23,5 @@ public final class Encoder {
             e.printStackTrace();
         }
         return imageString;
-    }
-	
-	
+    }	
 }

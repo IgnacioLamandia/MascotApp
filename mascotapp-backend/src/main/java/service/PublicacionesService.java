@@ -20,18 +20,18 @@ public class PublicacionesService {
 	}
 	
 	@Transactional
-	public void save(Publicacion publicacion) {
-		publiDAO.save(publicacion);
+	public void save(Publicacion publicacion) {	
+		publiDAO.save(publicacion);			
 	}
 
 	@Transactional
-	public void update(Publicacion publicacion) {
-		publiDAO.update(publicacion);
+	public void update(Publicacion publicacion) {	
+		publiDAO.update(publicacion);		
 	}
 
 	@Transactional
-	public void delete(Long id) {
-		publiDAO.delete(getById(id));
+	public void delete(Long id) {	
+		publiDAO.delete(getById(id));				
 	}
 
 	@Transactional
@@ -40,8 +40,7 @@ public class PublicacionesService {
 	}
 
 	@Transactional
-	public List<Publicacion> getAll() {
-		System.out.println("LLEGUE");
+	public List<Publicacion> getAll() {	
 		return publiDAO.getAll();
 	}
 

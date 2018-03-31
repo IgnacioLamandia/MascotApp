@@ -17,34 +17,17 @@ public class PublicacionDAOTestCase {
 	private HibernateDataService service = new HibernateDataService();
 	
 	@Before
-	public void setUp()
-	{
-		Runner.runInSession(() -> {
-			try {
-				service.createDatosIniciales();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		});
-	}
-	
-	@After
-	public void cleanup() {
-		SessionFactoryProvider.destroy();
+	public void setUp() {
+		try {
+			service.createDatosIniciales();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
-	public void testGetAllEntrenador() 
-	{
-		Runner.runInSession(() -> {
-			
-			Collection<Publicacion> publicaciones = this.dao.getAll();
-			
-			Assert.assertEquals(4, publicaciones.size());
-			
-			return null;
-		});
+	public void testGetAllEntrenador() {
+		Collection<Publicacion> publicaciones = this.dao.getAll();		
+		Assert.assertEquals(4, publicaciones.size());
 	}
 }
