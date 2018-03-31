@@ -22,10 +22,8 @@ import service.HibernateDataService;
 	    HibernateJpaAutoConfiguration.class
 	})
 
-public class MascotApp {
-	
-	HibernateDataService service = new HibernateDataService();
-	
+public class MascotApp {	
+	HibernateDataService service = new HibernateDataService();	
 	public MascotApp() throws IOException {
 		service.createInitialData();
 	}
