@@ -13,7 +13,7 @@ export class PostProvider {
   constructor(private http: Http) { }
 
   findAll(): Observable<Post[]>  {
-     return this.http.get(this.apiUrl+"publicaciones")
+     return this.http.get(this.apiUrl+"posts")
       .map(res => {
         return res.json().map(post => {
         	console.log(post);

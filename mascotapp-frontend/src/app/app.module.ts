@@ -4,6 +4,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { HttpModule } from '@angular/http';
+import { PostProvider } from '../providers/posts/post';
 import { CategoriesPage } from '../pages/categories/categories';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -18,6 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -28,6 +31,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    PostProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

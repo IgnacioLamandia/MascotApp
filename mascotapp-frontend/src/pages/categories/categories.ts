@@ -15,8 +15,13 @@ export class CategoriesPage {
 
     this.items = [];
     this.items.push({
+      title: 'Encontrados ',
+      description: 'Aquí podrás buscar aminales encontrados',
+      icon: 'paw'
+    });
+    this.items.push({
       title: 'Perdidos ',
-      description: 'Aquí podrás buscar aminales perdidos o encontrados',
+      description: 'Aquí podrás buscar aminales perdidos',
       icon: 'paw'
     });
     this.items.push({

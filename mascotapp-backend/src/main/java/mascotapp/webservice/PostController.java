@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import mascotapp.model.Post;
 import mascotapp.service.PostService;
 
-
 @CrossOrigin
 @RestController
 public class PostController {
@@ -34,5 +33,4 @@ public class PostController {
         }
         return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
     }
-
 }

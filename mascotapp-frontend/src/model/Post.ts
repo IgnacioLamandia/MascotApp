@@ -22,7 +22,7 @@ export class Post {
 		this.longitude = longitude;
 		this.latitude = latitude;
 		this.address = address;
-		this.category = category;
+		this.category = Category.ADOPCION;
 	}
 }
 
