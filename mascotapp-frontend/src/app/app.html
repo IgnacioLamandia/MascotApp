@@ -1,3 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>MascotApp</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="home()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
