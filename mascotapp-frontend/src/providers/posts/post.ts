@@ -26,4 +26,12 @@ export class PostProvider {
         });
       });
   }
+  
+  newPost(newPost):Observable<any>{
+      let params = newPost
+ 
+      let headersHttp = new HttpHeaders({'Authorization':localStorage.getItem("token")});
+         
+      return this.http.post(this.apiUrl+'post',{headers:headersHttp,responseType:'text'});
+  }
 }
