@@ -37,4 +37,29 @@ public class Post {
 		this.address = address;
 		this.category = category;		
 	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public void setLatitude(float latitude) {
+		this.latitude = latitude;
+	}
+
+	public void setLongitude(float longitude) {
+		this.longitude = longitude;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	
 }
