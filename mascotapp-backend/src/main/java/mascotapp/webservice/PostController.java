@@ -31,10 +31,10 @@ public class PostController {
 		}
 		return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
 	}
-
+	
 	@RequestMapping(value = "/posts", method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<Void> savePost(@RequestBody Post post) throws Exception {
-
+		post.image = Encoder.encode(post.image, "jpg");
 		this.postService.save(post);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
