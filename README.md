@@ -10,9 +10,6 @@ CI: https://travis-ci.org/IgnacioLamandia/MascotApp
 
 <p> El objetivo es crear una aplicación para registrar y difundir mascotas perdidas o puestas en adopción. La aplicación también permitirá conectar a cuidadores de mascotas con gente que necesitan que se las cuiden.</p>
 
-<br>
-
 <h4>Motivación</h4>
 
 <p>Brindar una aplicación sencilla y gratuita para que gente que perdió, encontró, quiera dar en adopción una mascota, pueda publicar indicando el lugar exacto y que estas publicaciones se muestren a gente de alrededor.</p>
-
