@@ -18,6 +18,7 @@ export class Post {
   	//,
   	//id?:number) 
   	{
+  	
   	//this.id = id;
 		this.description = description;
 		this.image = image;
