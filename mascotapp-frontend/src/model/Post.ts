@@ -8,7 +8,7 @@ export class Post {
   address: string;
   category: Category;
 	constructor(
-  	descripcion: string,
+  	description: string,
   	image: string,
   	latitude: number,
   	longitude: number,
@@ -17,16 +17,20 @@ export class Post {
   	id?:number) {
   	this.id = id;
 		this.description = descripcion;
+  	category: Category)
+		this.description = description;
 		this.image = image;
 		this.longitude = longitude;
 		this.latitude = latitude;
 		this.address = address;
 		this.category = Category.ADOPCION;
+		this.category = category;
 	}
 }
 
 export enum Category {
-  ENCONTRADO = "Encontrado",
-	PERDIDO = "Perdido",
-	ADOPCION = "En Adopcion"
+	BUSCO,
+	PERDIDO,
+	LASTIMADO,
+	CALLEJERO
 }
