@@ -12,7 +12,6 @@
 </ion-header>
 
 <ion-content padding>
-
 	<ion-list>
 	<ion-item>
 		<ion-label color="primary" class="labelEdicion" floating> Descripci&oacute;n </ion-label>
@@ -20,9 +19,8 @@
 	</ion-item>
 
 	<ion-item>
-    <label>Imagen</label>
-<input type="file" (change)="fileUpload($event)" id="img" name="img" style="position:absolute; " #fileInp>
-
+    <ion-label color="primary" class="labelEdicion" floating> Imagen </ion-label>
+	<ion-input type="file" (change)="fileUpload($event)" id="img" name="img" style="position:absolute; " #fileInp> </ion-input>
 	</ion-item>
 
 	<ion-item>
@@ -48,7 +46,7 @@
    </ion-item>
 
 </ion-list>
-
-    <button ion-button type="submit" block (click)="savePost()">Guardar</button>
-
+	<ion-item>
+    <button ion-button block (click)="savePost()">Guardar</button>
+    </ion-item>
 </ion-content>

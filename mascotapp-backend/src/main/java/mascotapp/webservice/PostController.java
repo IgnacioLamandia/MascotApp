@@ -1,5 +1,6 @@
 package mascotapp.webservice;
 
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import mascotapp.model.Encoder;
 import mascotapp.model.Post;
 import mascotapp.service.PostService;
 
@@ -34,14 +36,14 @@ public class PostController {
 	
 	@RequestMapping(value = "/posts", method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<Void> savePost(@RequestBody Post post) throws Exception {
-		post.image = Encoder.encode(post.image, "jpg");
+		//post.image = Encoder.encode((BufferedImage) post.image, "jpg");
 		this.postService.save(post);
-		return new ResponseEntity<Void>(HttpStatus.OK);
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/post", method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<String> createPost(@RequestBody Post input) {
-		Post post = new Post(input.description, input.image, 0f, 0f, input.address, input.category);
+	public ResponseEntity<Post> createPost(@RequestBody Post input) {
+		Post post = new Post(input.description, input.image, input.latitude, input.longitude, input.address, input.category);
 		this.postService.save(post);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}

@@ -1,16 +1,16 @@
 import { HttpClient ,HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from '../../model/Post';
-import { Http, Response } from "@angular/http";
+import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/toPromise';
 import { Observable } from "rxjs/Observable";
-
 
 @Injectable()
 export class PostProvider {
-  private apiUrl = 'http://127.0.0.1:9000/';
-  constructor(private http: Http) { }
+  apiUrl = "http://localhost:9000/";
+  constructor(public http: HttpClient) {console.log('Hello PostProvider Provider'); }
 
   findAll(): Observable<Post[]>  {
      return this.http.get(this.apiUrl+"posts")
@@ -21,17 +21,21 @@ export class PostProvider {
               post.description,
               "data:image/jpg;base64," + post.image,
               post.latitude, post.longitude,
-              post.address, post.category, post.id
+              post.address, post.category //, post.id
           );
         });
       });
   }
   
-  newPost(newPost):Observable<any>{
-      let params = newPost
- 
-      let headersHttp = new HttpHeaders({'Authorization':localStorage.getItem("token")});
-         
-      return this.http.post(this.apiUrl+'post',{headers:headersHttp,responseType:'text'});
+  newPost(item : Post):Observable<any>{ 
+      
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.apiUrl + 'posts', item, options)
+      .map(res => res.json())
+      .toPromise();
+  
+  
   }
 }
