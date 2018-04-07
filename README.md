@@ -1,5 +1,6 @@
 # MascotApp  <img src="https://github.com/IgnacioLamandia/MascotApp/blob/master/mascotapp-frontend/src/assets/icon/mascotapp-icon.ico" height="50" width="50">
 
+[![Build Status](https://travis-ci.org/IgnacioLamandia/MascotApp.svg?branch=master)](https://travis-ci.org/IgnacioLamandia/MascotApp)
 
 Trabajo de Inserción Profesional de la Tecnicatura Universitaria en Programación informática de la Universidad Nacional de Quilmes realizado los alumnos Ignacio Lamandia y Jeremías Tomé.
 
