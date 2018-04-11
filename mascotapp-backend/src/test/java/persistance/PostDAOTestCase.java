@@ -1,9 +1,7 @@
 package persistance;
 
-import java.io.IOException;
 import java.util.Collection;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,11 +17,7 @@ public class PostDAOTestCase {
 	
 	@Before
 	public void setUp() {
-		try {
 			service.createInitialData();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	@Test

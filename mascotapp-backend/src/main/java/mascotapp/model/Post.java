@@ -7,7 +7,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 
 @Entity
 public class Post {
@@ -16,7 +15,7 @@ public class Post {
 	public Long id;
 	
 	public String description;	
-	@Lob
+
 	public String image;	
 	public float latitude;	
 	public float longitude;

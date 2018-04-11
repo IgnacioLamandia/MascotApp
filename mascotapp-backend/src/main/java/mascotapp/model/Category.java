@@ -1,8 +1,7 @@
 package mascotapp.model;
 
 public enum Category {	
-	BUSCO,
-	PERDIDO,
-	LASTIMADO,
-	CALLEJERO
+	Encontrado,
+	Perdido,
+	Adopcion
 }
