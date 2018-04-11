@@ -22,7 +22,7 @@ import { HomePage } from '../home/home';
 
 export class CreatePostPage {
 
-	post = {description:'', image:'', latitude:0,longitude:0,address:'', category: Category.BUSCO};
+	post = {description:'', image:'', latitude:0,longitude:0,address:'', category: Category.Adopcion};
 
 	category = Object.keys(Category);
 	categories = this.category.slice(this.category.length/2);

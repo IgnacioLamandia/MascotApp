@@ -4,17 +4,15 @@
 <ion-content>
   <div class="containerHome">
     <ion-card [ngClass]="{'ionic-container': isDesktop }" *ngFor="let post of posts" fixed>
-      <img id="image" src="{{post.image}}"  [width]="imgWidth" [height]="imgHeight"/>
+      <ion-img [width]="imgWidth" [height]="imgHeight" src="{{post.image}}"></ion-img>
       <ion-card-content>
         <ion-card-title>
           {{post.category}}
         </ion-card-title>
-        <p>
-          {{post.description}}
-          {{post.address}}
-        </p>
+          <p class="card-text"> {{post.description}} </p>
+          <p class="card-text"> {{post.address}} </p>
         <button ion-button (click)="abrirPublicacion(post)">  <ion-icon name="paw"></ion-icon>
-            Ver mas
+            Ver m&aacute;s
         </button>
       </ion-card-content>
     </ion-card>

@@ -1,7 +1,5 @@
 package mascotapp;
 
-import java.io.IOException;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +22,7 @@ import mascotapp.service.HibernateDataService;
 
 public class MascotApp {	
 	HibernateDataService service = new HibernateDataService();	
-	public MascotApp() throws IOException {
+	public MascotApp() {
 		service.createInitialData();
 	}
 

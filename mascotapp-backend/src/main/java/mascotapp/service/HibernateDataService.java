@@ -15,7 +15,7 @@ public class HibernateDataService {
 		Post post3 = new Post("Perro lastimado","https://cdn.pixabay.com/photo/2015/11/17/13/13/dogue-de-bordeaux-1047521__340.jpg",0,0,"Calle 5 y 159",Category.Adopcion);
 		Post post4 = new Post("Perro callejero busca familia","https://cdn.pixabay.com/photo/2017/03/28/18/51/dog-2183017__340.jpg",0,0,"Calle 5 y 159",Category.Adopcion);
 		Post post5 = new Post("Gato busca familia","https://cdn.pixabay.com/photo/2017/09/19/20/26/cat-2766503__340.jpg",0,0,"Bernal",Category.Perdido);
-		Post post6 = new Post("Gato encontrado con collar","https://cdn.pixabay.com/photo/2017/09/19/20/26/cat-2766503__340.jpg",0,0,"Bernal",Category.Encontrado);
+		Post post6 = new Post("Gato encontrado con collar","https://cdn.pixabay.com/photo/2018/03/30/00/47/cat-3274150__340.jpg",0,0,"Bernal",Category.Encontrado);
 
 		postDAO.save(post1);
 		postDAO.save(post2);
