@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import mascotapp.model.Category;
 import mascotapp.model.Post;
 import mascotapp.persistance.HibernatePostDAO;
 
@@ -42,6 +43,11 @@ public class PostService {
 	@Transactional
 	public List<Post> getAll() {	
 		return postDAO.getAll();
+	}
+	
+	@Transactional
+	public List<Post> getAllByCategory(Category category) {	
+		return postDAO.getAllByCategory(category);
 	}
 
 }
