@@ -28,11 +28,11 @@ public class HibernateDataService {
 		    }
 		}
 		
-		Post post1 = new Post("Perro perdido",Encoder.encode(imgs.get(0), "jpg"),0,0,"Calle 5 y 159",Category.PERDIDO);
-		Post post2 = new Post("Busco Perro",Encoder.encode(imgs.get(1), "jpg"),0,0,"Calle 5 y 159",Category.BUSCO);
-		Post post3 = new Post("Perro lastimado",Encoder.encode(imgs.get(2), "jpg"),0,0,"Calle 5 y 159",Category.LASTIMADO);
-		Post post4 = new Post("Perro callejero busca familia",Encoder.encode(imgs.get(3), "jpg"),0,0,"Calle 5 y 159",Category.CALLEJERO);
-		Post post5 = new Post("Makoa busca familia",Encoder.encode(imgs.get(4), "jpg"),0,0,"Paladins",Category.BUSCO);
+		Post post1 = new Post("Perro perdido", Encoder.encode(imgs.get(0), "jpg"),0,0,"Calle 5 y 159",Category.PERDIDO);
+		Post post2 = new Post("Busco Perro", Encoder.encode(imgs.get(1), "jpg"),0,0,"Calle 5 y 159",Category.PERDIDO);
+		Post post3 = new Post("Perro lastimado", Encoder.encode(imgs.get(2), "jpg"),0,0,"Calle 5 y 159",Category.ENCONTRADO);
+		Post post4 = new Post("Perro callejero busca familia",Encoder.encode(imgs.get(4), "jpg"),0,0,"Calle 5 y 159",Category.ADOPCION);
+		Post post5 = new Post("Makoa busca familia", Encoder.encode(imgs.get(3), "jpg"),0,0,"Paladins",Category.ADOPCION);
 		
 		postDAO.save(post1);
 		postDAO.save(post2);

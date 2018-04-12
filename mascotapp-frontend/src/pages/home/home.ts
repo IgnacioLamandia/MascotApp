@@ -12,7 +12,7 @@ import { PostProvider } from '../../providers/posts/post';
 
 export class HomePage {
 
-  public posts : Post[];
+  public posts : any;
   public loaded : boolean = false;
   imgWidth : any;
   imgHeight: any;
@@ -20,6 +20,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController,
               public plt :Platform, private postService: PostProvider) {
+
     if (plt.is('core')) {
       console.log("I'm in a desktop!");
       this.isDesktop = true;
@@ -47,6 +48,21 @@ export class HomePage {
     console.log('get posts');
     loading.present();
 
+    this.postService.getAllPosts()
+      .then(data => {
+        console.log(data);
+        this.posts = data;
+        console.log(this.posts);
+        loading.dismiss();
+      });
+  }
+
+/*
+  getAllPosts() {
+    let loading = this.loadingCtrl.create({content:"Cargando..."});
+    console.log('get posts');
+    loading.present();
+
     this.postService.findAll().subscribe(
       posts => {
         console.log('get Publicaciones:  '+posts);
@@ -59,5 +75,5 @@ export class HomePage {
         loading.dismiss();
       }
     );
-  }
+  }*/
 }

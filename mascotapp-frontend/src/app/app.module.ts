@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 import { PostProvider } from '../providers/posts/post';
 import { CategoriesPage } from '../pages/categories/categories';
 import { CreatePostPage } from '../pages/create-post/create-post';
+import { HttpClientModule } from '@angular/common/http';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,8 +22,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpClientModule,
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

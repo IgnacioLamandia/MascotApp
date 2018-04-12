@@ -18,20 +18,10 @@
 		<ion-textarea  [(ngModel)]="post.description"></ion-textarea>
 	</ion-item>
 
-	<ion-item>
+  <ion-item>
     <ion-label color="primary" class="labelEdicion" floating> Imagen </ion-label>
-	<ion-input type="file" (change)="fileUpload($event)" id="img" name="img" style="position:absolute; " #fileInp> </ion-input>
-	</ion-item>
-
-	<ion-item>
-		<ion-label color="primary" class="labelEdicion" floating> Latitud </ion-label>
-		<ion-input type="number" [(ngModel)]="post.latitude"></ion-input>
-	</ion-item>
-
-	<ion-item>
-		<ion-label color="primary" class="labelEdicion" floating> Longitud </ion-label>
-		<ion-input type="number" [(ngModel)]="post.longitude"></ion-input>
-	</ion-item>
+    <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+  </ion-item>
 
 	<ion-item>
 		<ion-label color="primary" class="labelEdicion" floating> Direcci&oacute;n </ion-label>

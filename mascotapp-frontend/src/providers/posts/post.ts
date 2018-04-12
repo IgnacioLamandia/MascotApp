@@ -12,7 +12,7 @@ export class PostProvider {
   apiUrl = "http://localhost:9000/";
   constructor(public http: HttpClient) {console.log('Hello PostProvider Provider'); }
 
-  findAll(): Observable<Post[]>  {
+  /*findAll(): Observable<Post[]>  {
      return this.http.get(this.apiUrl+"posts")
       .map(res => {
         return res.json().map(post => {
@@ -25,17 +25,45 @@ export class PostProvider {
           );
         });
       });
+  }*/
+
+  getAllPosts() {
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'posts').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
   }
-  
-  newPost(item : Post):Observable<any>{ 
-      
+
+  savePost(data) {
+    const httpOptions = {
+        headers: new HttpHeaders({
+          'Access-Control-Allow-Origin':'*',
+          'Authorization':'authkey',
+          'userid':'1'
+        })
+    };
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'posts', JSON.stringify(data), {
+        headers: new HttpHeaders().set('Authorization', 'my-auth-token')
+      })
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  /*newPost(item : Post):Observable<any>{
+
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.apiUrl + 'posts', item, options)
       .map(res => res.json())
       .toPromise();
-  
-  
-  }
+  }*/
 }
