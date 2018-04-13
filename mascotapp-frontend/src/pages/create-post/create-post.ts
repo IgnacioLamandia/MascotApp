@@ -43,18 +43,17 @@ export class CreatePostPage {
 		  var myReader:FileReader = new FileReader();
 
 		  myReader.onloadend = (e) => {
-		    this.post.image = myReader.result;
+				var solution = myReader.result.split("base64,");
+				console.log(solution);
+		    this.post.image = solution[1];
 		  }
 		  myReader.readAsDataURL(file);
 		}
 
   	savePost(){
-			console.log(this.post.image);
-			var image = this.post.image.replace("data:image/jpg;base64," , "");
-			console.log(image);
 
 			let newPost : Post = new Post(
-					this.post.description, image,
+					this.post.description, this.post.image,
 					this.post.address, this.post.category
 			);
 		  this.restPosts.savePost(newPost).then((result) => {

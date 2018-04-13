@@ -37,9 +37,6 @@ public class PostController {
 
 	@RequestMapping(value = "/posts", method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<Void> savePost(@RequestBody Post post) throws Exception {
-		post.image = post.image.replaceAll("data:image/jpg;base64,","e");
-		System.out.println("*************  Nuevo post");
-		System.out.println(post);
 		this.postService.save(post);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
