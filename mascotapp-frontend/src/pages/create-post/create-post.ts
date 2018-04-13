@@ -49,12 +49,15 @@ export class CreatePostPage {
 		}
 
   	savePost(){
+			console.log(this.post.image);
+			var image = this.post.image.replace("data:image/jpg;base64," , "");
+			console.log(image);
+
 			let newPost : Post = new Post(
-					this.post.description, this.post.image,
+					this.post.description, image,
 					this.post.address, this.post.category
 			);
 		  this.restPosts.savePost(newPost).then((result) => {
-		    console.log(result);
 				this.returnToHome();
 		  }, (err) => {
 		    console.log(err);
@@ -74,22 +77,4 @@ export class CreatePostPage {
 			});
 			confirmacion.present();
 		}
-
-		/*	this.postProvider.newPost(newPost).subscribe(
-    	() => {
-            let confirmacion= this.alrtCtrl.create({
-              title:'Confirmacion',
-              message: 'Se publico correctamente',
-              buttons:[{
-                text:'Ok',
-                handler:()=>{
-                  this.navCtrl.push(HomePage);
-                }
-              }]
-            });
-            confirmacion.present();
-				  },
-      err => {
-          console.log(<any>err);
-      });*/
 }

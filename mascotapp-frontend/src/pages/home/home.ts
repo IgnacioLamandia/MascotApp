@@ -56,24 +56,4 @@ export class HomePage {
         loading.dismiss();
       });
   }
-
-/*
-  getAllPosts() {
-    let loading = this.loadingCtrl.create({content:"Cargando..."});
-    console.log('get posts');
-    loading.present();
-
-    this.postService.findAll().subscribe(
-      posts => {
-        console.log('get Publicaciones:  '+posts);
-        this.posts = posts;
-      },
-      err => {
-        console.log(err);
-      },
-      ()=>{
-        loading.dismiss();
-      }
-    );
-  }*/
 }
