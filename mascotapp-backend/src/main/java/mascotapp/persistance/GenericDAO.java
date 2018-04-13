@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class GenericDAO<T> {
 
-	private Class<T> entityType;
+	protected Class<T> entityType;
 	protected static final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 	
 	@Autowired

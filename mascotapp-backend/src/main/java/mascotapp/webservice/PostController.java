@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import mascotapp.model.Category;
 import mascotapp.model.Encoder;
 import mascotapp.model.Post;
 import mascotapp.service.PostService;
@@ -75,5 +76,14 @@ public class PostController {
 
 		postService.update(currentPost);
 		return new ResponseEntity<Post>(currentPost, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/posts/{category}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Post>> getAllByCategory(@PathVariable("category") Category category) {
+		List<Post> posts = this.postService.getAllByCategory(category);
+		if (posts.isEmpty() || posts == null) {
+			return new ResponseEntity<List<Post>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
 	}
 }
