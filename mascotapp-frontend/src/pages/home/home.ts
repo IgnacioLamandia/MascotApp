@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Nav,ModalController,NavParams,NavController ,Platform,Content, LoadingController } from 'ionic-angular';
 import { Post } from '../../model/Post';
 import { PostProvider } from '../../providers/posts/post';
+import { PostInfoPage } from '../post-info/post-info';
 
 @Component({
   selector: 'page-home',
@@ -56,4 +57,9 @@ export class HomePage {
         loading.dismiss();
       });
   }
+
+  abrirPublicacion(publi:Post){
+  this.navCtrl.push(PostInfoPage,{ publicacion:publi});
+}
+
 }
