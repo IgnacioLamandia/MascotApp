@@ -9,12 +9,10 @@
         <ion-card-title>
           {{post.category}}
         </ion-card-title>
-        <p>
-          {{post.description}}
-          {{post.address}}
-        </p>
+        <p class="card-text"> {{post.description}}</p>
+        <p class="card-text"><small class="text-muted">{{post.address}}</small></p>
         <button ion-button (click)="abrirPublicacion(post)">  <ion-icon name="paw"></ion-icon>
-            Ver mas
+            Ver m&aacute;s
         </button>
       </ion-card-content>
     </ion-card>
