@@ -1,20 +1,68 @@
+
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Categor&aacute;as</ion-title>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      Categor&iacute;as
+    </ion-title>
   </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="perdidos">
+        Perdidos
+      </ion-segment-button>
+      <ion-segment-button value="encontrados">
+        Encontrados
+      </ion-segment-button>
+      <ion-segment-button value="adopciones">
+        Adopciones
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    <a>{{selectedItem.description}}</a>
+  <div [ngSwitch]="pet">
+    <ion-list *ngSwitchCase="'perdidos'">
+      <ion-card [ngClass]="{'ionic-container': isDesktop }" *ngFor="let post of perdidos" fixed>
+        <img id="image" src="data:image/jpg;base64,{{post.image}}"  [width]="imgWidth" [height]="imgHeight"/>
+        <ion-card-content>
+          <ion-card-title>
+            {{post.address}}
+          </ion-card-title>
+          <button ion-button (click)="abrirPublicacion(post)">  <ion-icon name="paw"></ion-icon>
+              Ver m&aacute;s
+          </button>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'encontrados'">
+      <ion-card [ngClass]="{'ionic-container': isDesktop }" *ngFor="let post of encontrados" fixed>
+        <img id="image" src="data:image/jpg;base64,{{post.image}}"  [width]="imgWidth" [height]="imgHeight"/>
+        <ion-card-content>
+          <ion-card-title>
+            {{post.address}}
+          </ion-card-title>
+          <button ion-button (click)="abrirPublicacion(post)">  <ion-icon name="paw"></ion-icon>
+              Ver m&aacute;s
+          </button>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'adopciones'" >
+      <ion-card [ngClass]="{'ionic-container': isDesktop }" *ngFor="let post of adopciones" fixed>
+        <img id="image" src="data:image/jpg;base64,{{post.image}}"  [width]="imgWidth" [height]="imgHeight"/>
+        <ion-card-content>
+          <ion-card-title>
+            {{post.address}}
+          </ion-card-title>
+          <button ion-button (click)="abrirPublicacion(post)">  <ion-icon name="paw"></ion-icon>
+              Ver m&aacute;s
+          </button>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
   </div>
 </ion-content>

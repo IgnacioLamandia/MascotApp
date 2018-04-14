@@ -33,7 +33,6 @@ export class PostProvider {
           params: new HttpParams()
       };
 
-
       console.log(data);
       this.http.post(this.apiUrl+'posts', JSON.stringify(data), reqOpts)
         .subscribe(res => {
@@ -43,4 +42,9 @@ export class PostProvider {
         });
     });
   }
+
+  getAllByCategory(category) {
+    console.log(category);
+  return this.http.get(this.apiUrl + 'posts/' + category);
+}
 }
