@@ -1,4 +1,4 @@
-# MascotApp  <img src="https://github.com/IgnacioLamandia/MascotApp/blob/master/mascotapp-frontend/src/assets/icon/mascotapp-icon.ico" height="50" width="50">
+# MascotApp  <img src="https://github.com/IgnacioLamandia/MascotApp/blob/master/mascotapp-frontend/src/assets/icon/favicon.ico" height="32" width="32">
 
 [![Build Status](https://travis-ci.org/IgnacioLamandia/MascotApp.svg?branch=master)](https://travis-ci.org/IgnacioLamandia/MascotApp)
 
