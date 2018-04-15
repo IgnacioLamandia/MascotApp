@@ -4,9 +4,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { Geolocation } from '@ionic-native/geolocation';
 import { HttpModule } from '@angular/http';
 import { PostProvider } from '../providers/posts/post';
-import { CategoriesPage } from '../pages/categories/categories';
 import { CreatePostPage } from '../pages/create-post/create-post';
 import { PostInfoPage } from '../pages/post-info/post-info';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,7 +18,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     HomePage,
-    CategoriesPage,
     CreatePostPage,
     PostInfoPage
   ],
@@ -31,13 +30,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     HomePage,
-    CategoriesPage,
     CreatePostPage,
     PostInfoPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
     PostProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

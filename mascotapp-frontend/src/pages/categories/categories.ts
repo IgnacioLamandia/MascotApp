@@ -11,9 +11,9 @@ import { PostInfoPage } from '../post-info/post-info';
 })
 export class CategoriesPage {
   postProvider : PostProvider;
-  public perdidos : Post[];
-  public adopciones : Post[];
-  public encontrados : Post[];
+  public perdidos : any;
+  public adopciones : any;
+  public encontrados : any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restPosts: PostProvider) {
     this.postProvider = restPosts

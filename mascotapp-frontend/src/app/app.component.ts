@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { CategoriesPage } from '../pages/categories/categories';
 import { CreatePostPage } from '../pages/create-post/create-post';
 import { HttpModule } from '@angular/http';
 import { PostProvider } from '../providers/posts/post';
@@ -23,8 +22,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Nueva Publicación', component: CreatePostPage },
-      { title: 'Categorías', component: CategoriesPage }
+      { title: 'Nueva Publicación', component: CreatePostPage }
     ];
   }
 
