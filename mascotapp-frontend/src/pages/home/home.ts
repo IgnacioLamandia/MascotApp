@@ -30,7 +30,7 @@ export class HomePage {
 
   ngOnInit(){
     this.posts=[];
-    //this.getAllPosts();
+    this.getAllPosts();
     if(this.plt.is('core')){
       this.imgHeight="200";
       this.imgWidth="200";
@@ -50,14 +50,12 @@ export class HomePage {
 
     this.postService.getAllPosts()
       .then(data => {
-        console.log(data);
         this.posts = data;
-        console.log(this.posts);
         loading.dismiss();
       });
   }
 
-  abrirPublicacion(publi:Post){
-    this.navCtrl.push(PostInfoPage,{ publicacion:publi});
+  abrirPublicacion(post:Post){
+    this.navCtrl.push(PostInfoPage,{ post : post});
   }
 }

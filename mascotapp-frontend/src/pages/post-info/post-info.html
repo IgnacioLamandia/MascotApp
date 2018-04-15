@@ -7,10 +7,13 @@
 
 <ion-content padding >
     <div class="container">
-      <h2>{{publicacion.category}}</h2>
+      <h2>{{post.category}}</h2>
     </div>
     <div class="container">
-	     <h4>{{publicacion.description}}</h4>
-       <h4>{{publicacion.address}}</h4>
+       <img id="image" src="data:image/jpg;base64,{{post.image}}"  [width]="imgWidth" [height]="imgHeight"/>
+	     <h4>{{post.description}}</h4>
+       <h4>{{post.address}}</h4>
     </div>
+
+    <div id="map"></div>
 </ion-content>
