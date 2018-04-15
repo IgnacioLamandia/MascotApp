@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import { Post } from '../../model/Post';
 
 declare var google;
@@ -16,32 +14,21 @@ export class PostInfoPage {
   public imgWidth: any;
 	public imgHeight:any;
   public map:any;
-	public publicacion:Post;
+	public post:Post;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.imgHeight="300";
     this.imgWidth="300";
   	this.post = navParams.get("post");
   }
 
   ionViewDidLoad(){
-    this.getPosition();
+    this.loadMap();
   }
 
-  getPosition() {
-    this.geolocation.getCurrentPosition().then(response => {
-      this.loadMap(response);
-    })
-    .catch(error =>{
-      console.log(error);
-    })
-  }
-
-  loadMap(position: Geoposition){
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
-    console.log(latitude, longitude);
-
+  loadMap(){
+    let latitude = this.post.latitude;
+    let longitude = this.post.longitude;
     // create a new map by passing HTMLElement
     let mapEle: HTMLElement = document.getElementById('map');
 
@@ -51,7 +38,7 @@ export class PostInfoPage {
     // create map
     this.map = new google.maps.Map(mapEle, {
       center: myLatLng,
-      zoom: 12
+      zoom: 15
     });
 
     google.maps.event.addListenerOnce(this.map, 'idle', () => {

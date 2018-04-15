@@ -20,7 +20,7 @@ export class HomePage {
   isDesktop:boolean = false;
 
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController,
-              public plt :Platform, private postService: PostProvider) {
+    public plt :Platform, private postService: PostProvider) {
 
     if (plt.is('core')) {
       console.log("I'm in a desktop!");
@@ -56,6 +56,6 @@ export class HomePage {
   }
 
   abrirPublicacion(post:Post){
-    this.navCtrl.push(PostInfoPage,{ post : post});
+    this.navCtrl.push(PostInfoPage,{ post : post });
   }
 }

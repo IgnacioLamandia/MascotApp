@@ -60,6 +60,5 @@ public class Post {
 
 	public void setCategory(Category category) {
 		this.category = category;
-	}
-	
+	}	
 }
