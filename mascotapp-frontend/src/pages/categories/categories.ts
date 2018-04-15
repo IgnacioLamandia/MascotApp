@@ -10,49 +10,19 @@ import { PostInfoPage } from '../post-info/post-info';
   providers: [PostProvider]
 })
 export class CategoriesPage {
-  selectedItem: any;
-  items: Array<{title: string, description: string, icon: string}>;
   postProvider : PostProvider;
-  public perdidos : [Post];
-  public adopciones : [Post];
-  public encontrados : [Post];
+  public perdidos : Post[];
+  public adopciones : Post[];
+  public encontrados : Post[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restPosts: PostProvider) {
-    this.selectedItem = navParams.get('item');
     this.postProvider = restPosts
-
-    this.items = [];
-    this.items.push({
-      title: 'Encontrados ',
-      description: 'Aquí podrás buscar aminales encontrados',
-      icon: 'paw'
-    });
-    this.items.push({
-      title: 'Perdidos ',
-      description: 'Aquí podrás buscar aminales perdidos',
-      icon: 'paw'
-    });
-    this.items.push({
-      title: 'Adopciones ',
-      description: 'Aquí podrás buscar mascotas puestas en adopción',
-      icon: 'paw'
-    });
   }
 
   ngOnInit(){
-    this.perdidos=[];
     this.getPerdidos();
-    this.encontrados=[];
     this.getEncontrados();
-    this.adopciones=[];
     this.getAdopciones();
-    }
-
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(CategoriesPage, {
-      item: item
-    });
   }
 
   getEncontrados(){
@@ -93,6 +63,6 @@ export class CategoriesPage {
   }
 
   abrirPublicacion(publi:Post){
-  this.navCtrl.push(PostInfoPage,{ publicacion:publi});
-}
+    this.navCtrl.push(PostInfoPage,{ publicacion:publi});
+  }
 }
