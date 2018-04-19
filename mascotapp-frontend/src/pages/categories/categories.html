@@ -8,13 +8,13 @@
 
   <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="pet">
-      <ion-segment-button value="perdidos">
+      <ion-segment-button value="perdidos" >
         Perdidos
       </ion-segment-button>
-      <ion-segment-button value="encontrados">
+      <ion-segment-button value="encontrados" >
         Encontrados
       </ion-segment-button>
-      <ion-segment-button value="adopciones">
+      <ion-segment-button value="adopciones" >
         Adopciones
       </ion-segment-button>
     </ion-segment>
@@ -23,7 +23,7 @@
 
 <ion-content>
   <div [ngSwitch]="pet">
-    <ion-list *ngSwitchCase="'perdidos'">
+    <ion-list *ngSwitchCase="'perdidos'" >
       <ion-card [ngClass]="{'ionic-container': isDesktop }" *ngFor="let post of perdidos" fixed>
         <img id="image" src="data:image/jpg;base64,{{post.image}}"  [width]="imgWidth" [height]="imgHeight"/>
         <ion-card-content>

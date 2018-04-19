@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { CategoriesPage } from '../pages/categories/categories';
 import { HomePage } from '../pages/home/home';
 import { CreatePostPage } from '../pages/create-post/create-post';
 import { HttpModule } from '@angular/http';
@@ -22,6 +22,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
+      { title: 'Categorías', component: CategoriesPage },
       { title: 'Nueva Publicación', component: CreatePostPage }
     ];
   }
