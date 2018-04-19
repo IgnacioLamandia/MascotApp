@@ -18,7 +18,9 @@ export class CategoriesPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
               public restPosts: PostProvider) {
-    this.postProvider = restPosts
+      this.imgHeight="300";
+      this.imgWidth="300";
+      this.postProvider = restPosts
   }
 
   ngOnInit(){
@@ -40,8 +42,8 @@ export class CategoriesPage {
       this.adopciones = this.posts.filter(post => post.category === "ADOPCION");
   }
 
-  abrirPublicacion(publi:Post){
-    this.navCtrl.push(PostInfoPage,{ publicacion:publi});
+  abrirPublicacion(post:Post){
+    this.navCtrl.push(PostInfoPage,{ post : post });
   }
 
   getAllPosts() {
