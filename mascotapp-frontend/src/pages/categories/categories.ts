@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Post, Category } from '../../model/Post';
 import { PostProvider } from '../../providers/posts/post';
 import { PostInfoPage } from '../post-info/post-info';
@@ -11,58 +11,51 @@ import { PostInfoPage } from '../post-info/post-info';
 })
 export class CategoriesPage {
   postProvider : PostProvider;
+  public posts : any = [];
   public perdidos : any;
   public adopciones : any;
   public encontrados : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restPosts: PostProvider) {
-    this.postProvider = restPosts
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
+              public restPosts: PostProvider) {
+      this.imgHeight="300";
+      this.imgWidth="300";
+      this.postProvider = restPosts
   }
 
   ngOnInit(){
-    this.getPerdidos();
-    this.getEncontrados();
-    this.getAdopciones();
+    this.getAllPosts();
+    //this.getPerdidos();
+    //this.getEncontrados();
+    //this.getAdopciones();
   }
 
   getEncontrados(){
-    this.postProvider.getAllByCategory('ENCONTRADO')
-    .subscribe(
-      (data) => { // Success
-        this.encontrados = data;
-      },
-      (error) =>{
-        console.error(error);
-      }
-    )
+      this.encontrados = this.posts.filter(post => post.category === "ENCONTRADO");
   }
 
   getPerdidos(){
-    this.postProvider.getAllByCategory('PERDIDO')
-    .subscribe(
-      (data) => { // Success
-        this.perdidos = data;
-      },
-      (error) =>{
-        console.error(error);
-      }
-    )
+      this.perdidos = this.posts.filter(post => post.category === "PERDIDO");
   }
 
   getAdopciones(){
-    this.postProvider.getAllByCategory('ADOPCION')
-    .subscribe(
-      (data) => { // Success
-        //console.log(data);
-        this.adopciones = data;
-      },
-      (error) =>{
-        console.error(error);
-      }
-    )
+      this.adopciones = this.posts.filter(post => post.category === "ADOPCION");
   }
 
-  abrirPublicacion(publi:Post){
-    this.navCtrl.push(PostInfoPage,{ publicacion:publi});
+  abrirPublicacion(post:Post){
+    this.navCtrl.push(PostInfoPage,{ post : post });
+  }
+
+  getAllPosts() {
+    let loading = this.loadingCtrl.create({content:"Cargando..."});
+    loading.present();
+    this.postProvider.getAllPosts()
+      .then(data => {
+        this.posts = data;
+        this.getPerdidos();
+        this.getEncontrados();
+        this.getAdopciones();
+        loading.dismiss();
+      });
   }
 }

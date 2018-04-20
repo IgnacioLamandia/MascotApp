@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
+import { CategoriesPage } from '../pages/categories/categories';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -19,6 +19,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     HomePage,
+    CategoriesPage,
     CreatePostPage,
     PostInfoPage
   ],
@@ -32,6 +33,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     HomePage,
+    CategoriesPage,
     CreatePostPage,
     PostInfoPage
   ],
