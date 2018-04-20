@@ -15,11 +15,13 @@ export class CategoriesPage {
   public perdidos : any;
   public adopciones : any;
   public encontrados : any;
+  imgWidth : any;
+  imgHeight: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
               public restPosts: PostProvider) {
-      this.imgHeight= "300";
-      this.imgWidth= "300";
+      this.imgHeight= "200";
+      this.imgWidth= "200";
       this.postProvider = restPosts
   }
 
