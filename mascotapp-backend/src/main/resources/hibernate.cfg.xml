@@ -30,7 +30,8 @@
 		
 		<property name="hibernate.hbm2ddl.auto">create-drop</property>
 
-		<mapping class="mascotapp.model.Post" /> 
+		<mapping class="mascotapp.model.Post" />
+		<mapping class="mascotapp.model.Comment" /> 
 		
 	</session-factory>
 </hibernate-configuration>

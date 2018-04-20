@@ -1,6 +1,5 @@
 package mascotapp.webservice;
 
-import java.awt.image.BufferedImage;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import mascotapp.model.Category;
-import mascotapp.model.Encoder;
 import mascotapp.model.Post;
 import mascotapp.service.PostService;
 
@@ -43,7 +41,7 @@ public class PostController {
 
 	@RequestMapping(value = "/post", method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<Post> createPost(@RequestBody Post input) {
-		Post post = new Post(input.description, input.image, input.latitude, input.longitude, input.address, input.category);
+		Post post = new Post(input.title,input.description, input.image, input.latitude, input.longitude, input.address, input.category);
 		this.postService.save(post);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
@@ -64,12 +62,14 @@ public class PostController {
 		if (currentPost == null) {
 			return new ResponseEntity<Post>(HttpStatus.NOT_FOUND);
 		}
+		currentPost.setTitle(post.title);
 		currentPost.setDescription(post.description);
 		currentPost.setImage(post.image);
 		currentPost.setLatitude(post.latitude);
 		currentPost.setLongitude(post.longitude);
 		currentPost.setAddress(post.address);
 		currentPost.setCategory(post.category);
+		currentPost.setComments(post.comments);
 
 		postService.update(currentPost);
 		return new ResponseEntity<Post>(currentPost, HttpStatus.OK);

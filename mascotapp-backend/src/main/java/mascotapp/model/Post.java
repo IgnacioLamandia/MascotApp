@@ -1,20 +1,26 @@
 package mascotapp.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Post {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long id;
-	
+	public String title;
 	public String description;	
 	@Lob
 	public String image;	
@@ -23,19 +29,27 @@ public class Post {
 	public String address;		
 	@Enumerated(EnumType.ORDINAL)
 	public Category category;
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+	public List<Comment> comments;
 	
 	public Post() {		
 	}
 	
-	public Post(String description, String image, float latitude,
+	public Post(String title, String description, String image, float latitude,
 			float longitude, String address, Category category) {
 		
+		this.title = title;
 		this.description = description;
 		this.image = image;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.address = address;
-		this.category = category;		
+		this.category = category;	
+		this.comments = new ArrayList<Comment>();
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public void setDescription(String description) {
@@ -60,5 +74,9 @@ public class Post {
 
 	public void setCategory(Category category) {
 		this.category = category;
-	}	
+	}
+	
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
 }
