@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, NgZone, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Post, Category } from '../../model/Post';
 import { PostProvider } from '../../providers/posts/post';
 import { HomePage } from '../home/home';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+import { GeoCoderProvider } from '../../providers/geocoder/geocoder';
 
+declare var google;
 /**
  * Generated class for the CrearTareaPage page.
  *
@@ -19,6 +21,7 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 @Component({
   selector: 'page-create-post',
   templateUrl: 'create-post.html',
+	providers:[ Geolocation, GeoCoderProvider,PostProvider]
 })
 
 export class CreatePostPage {
@@ -26,15 +29,32 @@ export class CreatePostPage {
 	category = Object.keys(Category);
 	categories = this.category.slice(this.category.length/2);
 	postProvider : PostProvider;
-  	constructor(private alrtCtrl:AlertController,public navCtrl: NavController,
-			public navParams: NavParams, public restPosts: PostProvider, private geolocation: Geolocation) {
+
+  	constructor(private alrtCtrl:AlertController, public navCtrl: NavController,
+			public navParams: NavParams, public restPosts: PostProvider,
+			private geolocation: Geolocation, private geoCoder: GeoCoderProvider) {
   		this.postProvider = restPosts;
   	}
 
-  	ionViewDidLoad() {
+		@ViewChild('addressInput', { read: ElementRef })
+		public searchElementRef;
+
+		ionViewDidLoad() {
     	console.log('ionViewDidLoad CreatePostPage');
-			this.getPosition();
   	}
+
+		ngAfterViewInit(){
+			const nativeHomeInputBox = this.searchElementRef.nativeElement.getElementsByTagName('input')[0];
+			let options = {
+	      types: [],
+	      componentRestrictions: {country: "ar"}
+	    };
+      let autocomplete1 = new google.maps.places.Autocomplete(nativeHomeInputBox, options);
+			google.maps.event.addListener(autocomplete1, 'place_changed', function() {
+	      console.log("FROM CHANGED!" + this.post);
+			});
+			console.log( this.post.address);
+		}
 
 		changeListener($event) : void {
   		this.readThis($event.target);
@@ -61,13 +81,37 @@ export class CreatePostPage {
 		getPosition() {
 			this.geolocation.getCurrentPosition().then(response => {
 				var position: Geoposition = response;
-				console.log(position);
 				this.post.latitude = position.coords.latitude;
 				this.post.longitude = position.coords.longitude;
+				this.getAddress();
 			})
 			.catch(error =>{
 				console.log(error);
 			})
+		}
+
+		getAddress(){
+			var latitude = this.post.latitude;
+			var longitude = this.post.longitude;
+			this.geoCoder.getAddressFromPosition(latitude ,longitude).subscribe(
+				result => {
+					if(result.code != 200){
+						var street = result.results[0].address_components[1].long_name;
+						var location = result.results[0].address_components[2].long_name;
+						var city = result.results[0].address_components[3].long_name;
+						this.post.address = street +', '+ location +', '+ city
+					}else {
+						console.log(result);
+					}
+				},
+				error => {
+					console.log(<any>error);
+				}
+			);;
+		}
+
+		getActualPosition() {
+			this.getPosition();
 		}
 
 		returnHome() {

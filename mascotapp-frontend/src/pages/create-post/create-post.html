@@ -13,20 +13,34 @@
 
 <ion-content padding>
 	<ion-list>
+    <ion-item>
+      <button ion-button round icon-start (click)="getPicture()"><ion-icon name="camera"></ion-icon>  Toma una foto</button>
+      <img [src]="image" *ngIf="image" />
+    </ion-item>
+
+
 	<ion-item>
 		<ion-label color="primary" class="labelEdicion" floating> Descripci&oacute;n </ion-label>
 		<ion-textarea  [(ngModel)]="post.description"></ion-textarea>
 	</ion-item>
+
 
   <ion-item>
     <ion-label color="primary" class="labelEdicion"> Imagen </ion-label>
     <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
   </ion-item>
 
-	<ion-item>
-		<ion-label color="primary" class="labelEdicion" floating> Direcci&oacute;n </ion-label>
-		<ion-input type="text" [(ngModel)]="post.address"></ion-input>
-	</ion-item>
+
+      <ion-item>
+        <ion-label color="primary" class="labelEdicion" floating>Direcci&oacute;n</ion-label>
+        <ion-input #addressInput autocomplete="on" type="text" [(ngModel)]="post.address"></ion-input>
+
+        <br/>
+        <button round="true" item-end ion-button icon-locate-outline color="light" (click)="getActualPosition()">
+            <ion-icon name="locate-outline"></ion-icon>
+        </button>
+      </ion-item>
+
 
 	<ion-item>
 		<ion-label color="primary" class="labelEdicion" floating> Categor&iacute;a </ion-label>
