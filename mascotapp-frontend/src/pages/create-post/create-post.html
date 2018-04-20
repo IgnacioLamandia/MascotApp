@@ -13,12 +13,6 @@
 
 <ion-content padding>
 	<ion-list>
-    <ion-item>
-      <button ion-button round icon-start (click)="getPicture()"><ion-icon name="camera"></ion-icon>  Toma una foto</button>
-      <img [src]="image" *ngIf="image" />
-    </ion-item>
-
-
 	<ion-item>
 		<ion-label color="primary" class="labelEdicion" floating> Descripci&oacute;n </ion-label>
 		<ion-textarea  [(ngModel)]="post.description"></ion-textarea>

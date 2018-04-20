@@ -18,16 +18,13 @@ export class CategoriesPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
               public restPosts: PostProvider) {
-      this.imgHeight="300";
-      this.imgWidth="300";
+      this.imgHeight= "300";
+      this.imgWidth= "300";
       this.postProvider = restPosts
   }
 
   ngOnInit(){
     this.getAllPosts();
-    //this.getPerdidos();
-    //this.getEncontrados();
-    //this.getAdopciones();
   }
 
   getEncontrados(){
