@@ -25,7 +25,7 @@ declare var google;
 })
 
 export class CreatePostPage {
-	post = {description:'', image:'', latitude:0, longitude:0, address:'', category: Category.PERDIDO};
+	post = {title:'', description:'', image:'', latitude:0, longitude:0, address:'', category: Category.PERDIDO};
 	category = Object.keys(Category);
 	categories = this.category.slice(this.category.length/2);
 	postProvider : PostProvider;

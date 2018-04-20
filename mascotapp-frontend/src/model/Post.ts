@@ -1,6 +1,7 @@
 export class Post {
 
   id: number;
+  title: string;
   description: string;
   image: string;
   latitude: number;
@@ -9,6 +10,7 @@ export class Post {
   category: Category;
 
 	constructor(
+    title: string,
   	description: string,
   	image: string,
   	address: string,
@@ -16,6 +18,7 @@ export class Post {
   	id?:number)	{
 
   	this.id = id;
+    this.title = title
 		this.description = description;
 		this.image = image;
 		this.longitude = 0;

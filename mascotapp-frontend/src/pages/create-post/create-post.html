@@ -13,6 +13,11 @@
 
 <ion-content padding>
 	<ion-list>
+    <ion-item>
+  		<ion-label color="primary" class="labelEdicion" floating> T&iacute;tulo </ion-label>
+  		<ion-textarea  [(ngModel)]="post.title"></ion-textarea>
+  	</ion-item>
+
 	<ion-item>
 		<ion-label color="primary" class="labelEdicion" floating> Descripci&oacute;n </ion-label>
 		<ion-textarea  [(ngModel)]="post.description"></ion-textarea>
