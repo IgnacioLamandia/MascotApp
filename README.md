@@ -15,3 +15,15 @@ CI: https://travis-ci.org/IgnacioLamandia/MascotApp
 <h4>Motivación</h4>
 
 <p>Brindar una aplicación sencilla y gratuita para que gente que perdió, encontró, quiera dar en adopción una mascota, pueda publicar indicando el lugar exacto y que estas publicaciones se muestren a gente de alrededor.</p>
+
+<h4>Home</h4>
+[Home](https://github.com/IgnacioLamandia/MascotApp/wiki)
+
+<h4>Circuito</h4>
+[Circuito](https://github.com/IgnacioLamandia/MascotApp/wiki/Circuito)
+
+<h4>Diagrama de arquitectura</h4>
+[Diagrama de arquitectura](https://github.com/IgnacioLamandia/MascotApp/wiki/Diagrama-de-arquitectura)
+
+<h4>Entrega 1</h4>
+[Entrega 1](https://github.com/IgnacioLamandia/MascotApp/wiki/Entrega-1)
