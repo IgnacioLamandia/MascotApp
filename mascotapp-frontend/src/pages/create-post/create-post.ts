@@ -5,6 +5,7 @@ import { PostProvider } from '../../providers/posts/post';
 import { HomePage } from '../home/home';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import { GeoCoderProvider } from '../../providers/geocoder/geocoder';
+import { Camera,CameraOptions } from '@ionic-native/camera';
 
 declare var google;
 /**
@@ -31,7 +32,7 @@ export class CreatePostPage {
 	postProvider : PostProvider;
 
   	constructor(private alrtCtrl:AlertController, public navCtrl: NavController,
-			public navParams: NavParams, public restPosts: PostProvider,
+			public navParams: NavParams, public restPosts: PostProvider, private camera: Camera,
 			private geolocation: Geolocation, private geoCoder: GeoCoderProvider) {
   		this.postProvider = restPosts;
   	}
@@ -127,4 +128,22 @@ export class CreatePostPage {
 			});
 			confirmacion.present();
 		}
+
+	takeImage(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+
+     let newImage = 'data:image/jpeg;base64,' + imageData;
+     this.post.image = newImage;
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
 }

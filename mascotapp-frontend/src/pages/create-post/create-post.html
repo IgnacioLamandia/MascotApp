@@ -27,6 +27,8 @@
   <ion-item>
     <ion-label color="primary" class="labelEdicion"> Imagen </ion-label>
     <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+    <br/>
+    <button round="true" item-end ion-button icon-locate-outline (click)="takeImage()" ><ion-icon name="camera"></ion-icon></button>
   </ion-item>
 
 
@@ -35,7 +37,7 @@
         <ion-input #addressInput autocomplete="on" type="text" [(ngModel)]="post.address"></ion-input>
 
         <br/>
-        <button round="true" item-end ion-button icon-locate-outline color="light" (click)="getActualPosition()">
+        <button round="true" item-end ion-button icon-locate-outline (click)="getActualPosition()">
             <ion-icon name="locate-outline"></ion-icon>
         </button>
       </ion-item>
