@@ -14,11 +14,12 @@ MascotApp es una aplicación mobile que contiene dos funcionalidades principales
  * La primera funcionalidad nos permitirá registrar y difundir mascotas perdidas, encontradas o puestas en adopción. 
  * La segunda funcionalidad nos permitirá conectar gente que necesita que cuiden de su mascota temporalmente con cuidadores de mascotas.
 
-<h4>Link a la Wiki</h4>
-`[Home](https://github.com/IgnacioLamandia/MascotApp/wiki)`
+<h4>Links a la Wiki</h4>
 
-`[Circuito](https://github.com/IgnacioLamandia/MascotApp/wiki/Circuito)`
+[Home](https://github.com/IgnacioLamandia/MascotApp/wiki)
 
-`[Diagrama de arquitectura](https://github.com/IgnacioLamandia/MascotApp/wiki/Diagrama-de-arquitectura)`
+[Circuito](https://github.com/IgnacioLamandia/MascotApp/wiki/Circuito)
 
-`[Entrega 1](https://github.com/IgnacioLamandia/MascotApp/wiki/Entrega-1)`
+[Diagrama de arquitectura](https://github.com/IgnacioLamandia/MascotApp/wiki/Diagrama-de-arquitectura)
+
+[Entrega 1](https://github.com/IgnacioLamandia/MascotApp/wiki/Entrega-1)
