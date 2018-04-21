@@ -8,6 +8,7 @@ export class Post {
   longitude: number;
   address: string;
   category: Category;
+  comments: Comment[];
 
 	constructor(
     title: string,
@@ -25,6 +26,7 @@ export class Post {
 		this.latitude = 0;
 		this.address = address;
 		this.category = category;
+		this.comments = [];
 	}
 }
 
@@ -33,3 +35,20 @@ export enum Category {
 	ENCONTRADO,
 	ADOPCION
 }
+
+export class Comment {
+  text: string;
+  name: string;
+  email: string;
+
+  constructor(
+    text: string,
+    name: string,
+    email: string) {
+
+    this.text = text;
+    this.name = name;
+    this.email = email;
+  }
+}
+

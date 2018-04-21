@@ -83,4 +83,17 @@ public class PostController {
 		}
 		return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
 	}
+	
+	/* 
+	  @RequestMapping(value = "/post/{id}/newComment", method = RequestMethod.PUT) 
+	  public ResponseEntity<Post> newCommentPost(@PathVariable("id") long id, @RequestBody Comment comment) { 
+	    Post currentPost = postService.getById(id); 
+	    if (currentPost == null) { 
+	      return new ResponseEntity<Post>(HttpStatus.NOT_FOUND); 
+	    } 
+	    Comment newComment = new Comment(comment.text, comment.name, comment.email); 
+	    currentPost.addComment(newComment); 
+	    postService.update(currentPost); 
+	    return new ResponseEntity<Post>(currentPost, HttpStatus.OK); 
+	  }*/ 
 }

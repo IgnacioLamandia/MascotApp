@@ -47,4 +47,12 @@ export class PostProvider {
     console.log(category);
   return this.http.get(this.apiUrl + 'posts/' + category);
 }
+
+/*
+addComment(id,comment):Observable<any>{
+    console.log(id);
+    console.log(comment);
+    return this.http.put(this.apiUrl+"/post/"+id+"/newComment",comment);
+  }*/
+  
 }

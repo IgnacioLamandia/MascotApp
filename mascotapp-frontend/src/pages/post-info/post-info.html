@@ -17,4 +17,40 @@
     </div>
 
     <div id="map"></div>
+
+    <div class="comment-list">
+      <h4>Comentarios:</h4>
+      <ion-card [ngClass]="{'ionic-container': isDesktop }" *ngFor="let com of comments" fixed>
+        <ion-item>
+            <ion-icon item-start name="contact"></ion-icon>   <h2>{{com.name}}</h2>   <p>{{com.email}}</p>
+          </ion-item>
+        <ion-card-content>
+          <p class="card-text">{{com.text}}</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div class="comment-box">
+      <h4>Deja tu comentario</h4>
+    	<ion-list>
+    	  <ion-item>
+    		  <ion-label color="primary" class="labelEdicion" floating> Texto </ion-label>
+    		  <ion-textarea  [(ngModel)]="comment.text"></ion-textarea>
+    	 </ion-item>
+
+       <ion-item>
+         <ion-label color="primary" class="labelEdicion" floating> Nombre </ion-label>
+         <ion-textarea  [(ngModel)]="comment.name"></ion-textarea>
+       </ion-item>
+
+       <ion-item>
+         <ion-label color="primary" class="labelEdicion" floating> Email </ion-label>
+         <ion-textarea  [(ngModel)]="comment.email"></ion-textarea>
+       </ion-item>
+    </ion-list>
+    	<ion-item>
+        <button ion-button block (click)="saveComment()">Comentar</button>
+      </ion-item>
+    </div>
+    
 </ion-content>
