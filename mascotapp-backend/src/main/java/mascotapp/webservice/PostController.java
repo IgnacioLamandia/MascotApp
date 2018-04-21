@@ -38,14 +38,14 @@ public class PostController {
 		this.postService.save(post);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
-
+/*
 	@RequestMapping(value = "/post", method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<Post> createPost(@RequestBody Post input) {
 		Post post = new Post(input.title,input.description, input.image, input.latitude, input.longitude, input.address, input.category);
 		this.postService.save(post);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
-
+*/
 	@RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Post> deletePost(@PathVariable("id") long id) {
 		Post post = postService.getById(id);
@@ -62,6 +62,7 @@ public class PostController {
 		if (currentPost == null) {
 			return new ResponseEntity<Post>(HttpStatus.NOT_FOUND);
 		}
+		/*
 		currentPost.setTitle(post.title);
 		currentPost.setDescription(post.description);
 		currentPost.setImage(post.image);
@@ -70,7 +71,7 @@ public class PostController {
 		currentPost.setAddress(post.address);
 		currentPost.setCategory(post.category);
 		currentPost.setComments(post.comments);
-
+*/
 		postService.update(currentPost);
 		return new ResponseEntity<Post>(currentPost, HttpStatus.OK);
 	}
