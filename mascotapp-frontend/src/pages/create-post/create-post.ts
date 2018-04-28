@@ -40,9 +40,11 @@ export class CreatePostPage {
 		@ViewChild('addressInput', { read: ElementRef })
 		public searchElementRef;
 
-		ionViewDidLoad() {
-    	console.log('ionViewDidLoad CreatePostPage');
-  	}
+		@ViewChild('fileInp', { read: ElementRef })
+		public fileInput;
+
+		//@Input() label: string;
+		//@Output() data = new EventEmitter<FormData>();
 
 		ngAfterViewInit(){
 			const nativeHomeInputBox = this.searchElementRef.nativeElement.getElementsByTagName('input')[0];
@@ -57,7 +59,14 @@ export class CreatePostPage {
 			console.log( this.post.address);
 		}
 
+		uploadImage() {
+				console.log('uploadImage'),
+				console.log(this.fileInput),
+				this.fileInput.nativeElement.click();
+		}
+
 		changeListener($event) : void {
+			console.log('changeListener');
   		this.readThis($event.target);
 		}
 
@@ -136,7 +145,7 @@ export class CreatePostPage {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
-    
+
     this.camera.getPicture(options).then((imageData) => {
 
      let newImage = 'data:image/jpeg;base64,' + imageData;

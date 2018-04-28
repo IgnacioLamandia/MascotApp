@@ -23,11 +23,9 @@
 		<ion-textarea  [(ngModel)]="post.description"></ion-textarea>
 	</ion-item>
 
-
   <ion-item>
-    <ion-label color="primary" class="labelEdicion"> Imagen </ion-label>
-    <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
-    <br/>
+    <input type="file" accept="image/*" (change)="changeListener($event)" id="file-input" style="position:absolute; top: -999999px" #fileInp>
+    <button ion-button block (click)="uploadImage()">Subir fotos</button>
     <button round="true" item-end ion-button icon-locate-outline (click)="takeImage()" ><ion-icon name="camera"></ion-icon></button>
   </ion-item>
 
@@ -50,8 +48,10 @@
    		</ion-select>
    </ion-item>
 
+   <ion-item>
+     <button ion-button block (click)="savePost()">Publicar</button>
+   </ion-item>
+
 </ion-list>
-	<ion-item>
-    <button ion-button block (click)="savePost()">Publicar</button>
-    </ion-item>
+
 </ion-content>

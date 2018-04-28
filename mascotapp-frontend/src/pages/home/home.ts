@@ -49,7 +49,7 @@ export class HomePage {
       });
   }
 
-  abrirPublicacion(post:Post){
+  viewPost(post:Post){
     this.navCtrl.push(PostInfoPage,{ post : post });
   }
 }

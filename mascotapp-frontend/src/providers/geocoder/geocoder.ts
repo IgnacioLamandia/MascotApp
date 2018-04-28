@@ -9,7 +9,7 @@ export class GeoCoderProvider {
 	API_KEY: string;
   API_POSITION_URL: string;
   API_ADDRESS_URL:string;
-  
+
   constructor(public http: Http) {
   	this.API_KEY = `AIzaSyCyJB4s6e36bnzcGKTWvGYryM-jaxdbn0M`;
     this.API_POSITION_URL = `https://maps.googleapis.com/maps/api/geocode/json?key=${this.API_KEY}&address=`;
