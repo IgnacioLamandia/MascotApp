@@ -22,15 +22,11 @@ export class HomePage {
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController,
     public plt :Platform, private postService: PostProvider) {
 
-    if (plt.is('core')) {
-      console.log("I'm in a desktop!");
-      this.isDesktop = true;
-    }
   }
 
   ngOnInit(){
     this.posts=[];
-    this.getAllPosts();
+    //this.getAllPosts();
     if(this.plt.is('core')){
       this.imgHeight="200";
       this.imgWidth="200";
@@ -45,9 +41,7 @@ export class HomePage {
 
   getAllPosts() {
     let loading = this.loadingCtrl.create({content:"Cargando..."});
-    console.log('get posts');
     loading.present();
-
     this.postService.getAllPosts()
       .then(data => {
         this.posts = data;
