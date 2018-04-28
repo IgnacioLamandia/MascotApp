@@ -105,9 +105,10 @@ export class CreatePostPage {
 				result => {
 					if(result.code != 200){
 						var street = result.results[0].address_components[1].long_name;
+						var number = result.results[0].address_components[0].long_name;
 						var location = result.results[0].address_components[2].long_name;
 						var city = result.results[0].address_components[3].long_name;
-						this.post.address = street +', '+ location +', '+ city
+						this.post.address = street +' '+number+', '+ location +', '+ city
 					}else {
 						console.log(result);
 					}
