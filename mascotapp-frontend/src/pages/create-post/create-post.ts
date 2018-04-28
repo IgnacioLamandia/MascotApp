@@ -42,21 +42,19 @@ export class CreatePostPage {
 
 		@ViewChild('fileInp', { read: ElementRef })
 		public fileInput;
-
-		//@Input() label: string;
-		//@Output() data = new EventEmitter<FormData>();
-
 		ngAfterViewInit(){
-			const nativeHomeInputBox = this.searchElementRef.nativeElement.getElementsByTagName('input')[0];
+			const input = this.searchElementRef.nativeElement.getElementsByTagName('input')[0];
+			let component = this;
 			let options = {
 	      types: [],
 	      componentRestrictions: {country: "ar"}
 	    };
-      let autocomplete1 = new google.maps.places.Autocomplete(nativeHomeInputBox, options);
-			google.maps.event.addListener(autocomplete1, 'place_changed', function() {
-	      console.log("FROM CHANGED!" + this.post);
-			});
-			console.log( this.post.address);
+      let autocomplete = new google.maps.places.Autocomplete(input, options);
+			autocomplete.addListener('place_changed', function() {
+				component.post.address = autocomplete.getPlace().formatted_address;
+				component.post.latitude = autocomplete.getPlace().geometry.viewport.f.b;
+				component.post.longitude = autocomplete.getPlace().geometry.viewport.b.b
+			}, false);
 		}
 
 		uploadImage() {
