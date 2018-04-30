@@ -41,7 +41,7 @@
        <ion-item *ngIf="formularioComment.get('text').errors && formularioComment.get('text').dirty">
         <p *ngIf="formularioComment.get('text').hasError('required')" style="white-space: normal; color:red">El mensaje es requerido.</p>
         <p *ngIf="formularioComment.get('text').hasError('maxlength')" style="white-space: normal; color:red">El maximo de caracteres permitidos es 200.</p>
-        <p *ngIf="formularioComment.get('name').hasError('minlength')" style="white-space: normal; color:red">El minimo de caracteres permitidos es 5.</p>
+        <p *ngIf="formularioComment.get('text').hasError('minlength')" style="white-space: normal; color:red">El minimo de caracteres permitidos es 5.</p>
       </ion-item>
 
        <ion-item>
