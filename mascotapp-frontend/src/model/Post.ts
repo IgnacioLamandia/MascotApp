@@ -37,6 +37,8 @@ export enum Category {
 }
 
 export class Comment {
+
+  id: number;
   text: string;
   name: string;
   email: string;
@@ -44,8 +46,10 @@ export class Comment {
   constructor(
     text: string,
     name: string,
-    email: string) {
-
+    email: string,
+  	id?:number) {
+    
+    this.id = id;
     this.text = text;
     this.name = name;
     this.email = email;

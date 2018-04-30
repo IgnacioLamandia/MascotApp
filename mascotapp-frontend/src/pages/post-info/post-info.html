@@ -30,27 +30,42 @@
       </ion-card>
     </div>
 
-    <div class="comment-box">
+    <div class="comment-box" [formGroup]="formularioComment" (ngSubmit)="saveData()" novalidate>
       <h4>Deja tu comentario</h4>
+      
     	<ion-list>
     	  <ion-item>
-    		  <ion-label color="primary" class="labelEdicion" floating> Texto </ion-label>
-    		  <ion-textarea  [(ngModel)]="comment.text"></ion-textarea>
-    	 </ion-item>
+          <ion-label color="primary" class="labelEdicion" floating> Mensaje </ion-label>
+          <ion-input formControlName="text" type="text" placeholder="Mensaje" name="text" [(ngModel)]="commentData.text" ></ion-input>
+       </ion-item>
+       <ion-item *ngIf="formularioComment.get('text').errors && formularioComment.get('text').dirty">
+        <p *ngIf="formularioComment.get('text').hasError('required')" style="white-space: normal; color:red">El mensaje es requerido.</p>
+        <p *ngIf="formularioComment.get('text').hasError('maxlength')" style="white-space: normal; color:red">El maximo de caracteres permitidos es 200.</p>
+        <p *ngIf="formularioComment.get('name').hasError('minlength')" style="white-space: normal; color:red">El minimo de caracteres permitidos es 5.</p>
+      </ion-item>
 
        <ion-item>
          <ion-label color="primary" class="labelEdicion" floating> Nombre </ion-label>
-         <ion-textarea  [(ngModel)]="comment.name"></ion-textarea>
+         <ion-input formControlName="name" type="text" placeholder="Nombre" name="name" [(ngModel)]="commentData.name" ></ion-input>
        </ion-item>
+       <ion-item *ngIf="formularioComment.get('name').errors && formularioComment.get('name').dirty">
+        <p *ngIf="formularioComment.get('name').hasError('required')" style="white-space: normal; color:red">El nombre es requerido.</p>
+        <p *ngIf="formularioComment.get('name').hasError('maxlength')" style="white-space: normal; color:red">El maximo de caracteres permitidos es 50.</p>
+        <p *ngIf="formularioComment.get('name').hasError('minlength')" style="white-space: normal; color:red">El minimo de caracteres permitidos es 4.</p>
+      </ion-item>
 
        <ion-item>
          <ion-label color="primary" class="labelEdicion" floating> Email </ion-label>
-         <ion-textarea  [(ngModel)]="comment.email"></ion-textarea>
-       </ion-item>
-    </ion-list>
-    	<ion-item>
-        <button ion-button block (click)="saveComment()">Comentar</button>
+         <ion-input formControlName="email" type="email" placeholder="Email" name="email" [(ngModel)]="commentData.email" ></ion-input>
       </ion-item>
+      <ion-item *ngIf="formularioComment.get('email').errors && formularioComment.get('email').dirty">
+        <p *ngIf="formularioComment.get('email').hasError('required')" style="white-space: normal; color:red">El email es requerido.</p>
+        <p *ngIf="formularioComment.get('email').hasError('email')" style="white-space: normal; color:red">El email indicado no es valido.</p>
+      </ion-item>
+    </ion-list>
+    <ion-item>
+      <button ion-button block type="submit" [disabled]="!formularioComment.valid" (click)="saveComment()" >Comentar</button>
+    </ion-item>
     </div>
-    
+
 </ion-content>
