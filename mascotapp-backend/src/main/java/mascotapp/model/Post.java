@@ -29,7 +29,7 @@ public class Post {
 	public String address;		
 	@Enumerated(EnumType.ORDINAL)
 	public Category category;
-	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	public List<Comment> comments;
 	
 	public Post() {		

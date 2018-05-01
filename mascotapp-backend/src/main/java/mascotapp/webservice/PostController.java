@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import mascotapp.model.Category;
+import mascotapp.model.Comment;
 import mascotapp.model.Post;
 import mascotapp.service.PostService;
 
@@ -85,7 +86,7 @@ public class PostController {
 		return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
 	}
 	
-	/* 
+	 
 	  @RequestMapping(value = "/post/{id}/newComment", method = RequestMethod.PUT) 
 	  public ResponseEntity<Post> newCommentPost(@PathVariable("id") long id, @RequestBody Comment comment) { 
 	    Post currentPost = postService.getById(id); 
@@ -96,5 +97,5 @@ public class PostController {
 	    currentPost.addComment(newComment); 
 	    postService.update(currentPost); 
 	    return new ResponseEntity<Post>(currentPost, HttpStatus.OK); 
-	  }*/ 
+	  } 
 }
