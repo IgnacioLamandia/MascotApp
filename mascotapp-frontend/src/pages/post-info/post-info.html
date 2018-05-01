@@ -17,8 +17,15 @@
     </div>
 
     <div id="map"></div>
-
-    <div class="comment-list">
+    <div class="edit-delete-buttons" *ngIf="isMyPost()">
+      <ion-item>
+          <button ion-button block color="danger" (click)="deletePost()"><ion-icon name='trash'></ion-icon> ELiminar</button>
+      </ion-item>
+      <ion-item>
+        <button ion-button block color="secondary" (click)="editPost(post)"><ion-icon name='clipboard'></ion-icon> Editar</button>
+      </ion-item>
+    </div>
+    <div class="comment-list" *ngIf="isEmptyComments()">
       <h4>Comentarios:</h4>
       <ion-card [ngClass]="{'ionic-container': isDesktop }" *ngFor="let com of comments" fixed>
         <ion-item>

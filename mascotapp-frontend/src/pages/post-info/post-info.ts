@@ -68,6 +68,14 @@ export class PostInfoPage {
     });
   }
 
+  isMyPost() {
+    return true; //ver logica de como definir cuando es mi post
+  }
+
+  isEmptyComments() {
+    return this.comments.length > 0;
+  }
+
   newComment(){
     this.id = this.id+100;
     this.comment.id = this.id;
