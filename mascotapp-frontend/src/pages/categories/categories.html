@@ -1,11 +1,14 @@
-
 <ion-header>
-  <ion-navbar no-border-bottom>
-    <ion-title>
-      Categor&iacute;as
-    </ion-title>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Categor&iacute;as</ion-title>
   </ion-navbar>
+</ion-header>
 
+
+<ion-content>
   <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="pet">
       <ion-segment-button value="perdidos" >
@@ -19,9 +22,7 @@
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-</ion-header>
 
-<ion-content>
   <div [ngSwitch]="pet">
     <ion-list *ngSwitchCase="'perdidos'" >
       <ion-card [ngClass]="{'ionic-container': isDesktop }" *ngFor="let post of perdidos" fixed>

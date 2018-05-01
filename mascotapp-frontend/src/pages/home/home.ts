@@ -49,6 +49,10 @@ export class HomePage {
       });
   }
 
+  search() {
+    console.log('Search');
+  }
+
   viewPost(post:Post){
     this.navCtrl.push(PostInfoPage,{ post : post });
   }
