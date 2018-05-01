@@ -88,11 +88,14 @@ export class PostInfoPage {
     this.newComment();
     console.log(this.comment);
     this.post.comments.push(this.comment);
-    this.comment = {text:'', name:'', email:'',id:0};
+        //conectarse con el provider
+        console.log(this.post);
+        this.postProvider.addComment(this.post.id, this.comment);
+
+    this.comment = {text:'', name:'', email:'', id:0};
     this.formularioComment.reset()
     this.commentData = [];
-    //conectarse con el provider
-    //this.postProvider.
+
 }
 
   /**
@@ -110,6 +113,14 @@ export class PostInfoPage {
     alerta.present()
     this.formularioComment.reset()
     this.commentData = [];
+  }
+
+  deletePost(){
+    this.postProvider.delete(this.post.id)
+  }
+
+  editPost(post:Post){
+    //this.navCtrl.push(EditPostPage,{ post : post });
   }
 
 }

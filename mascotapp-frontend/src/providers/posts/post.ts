@@ -48,11 +48,21 @@ export class PostProvider {
   return this.http.get(this.apiUrl + 'posts/' + category);
 }
 
-/*
-addComment(id,comment):Observable<any>{
-    console.log(id);
-    console.log(comment);
-    return this.http.put(this.apiUrl+"/post/"+id+"/newComment",comment);
-  }*/
-  
+addComment(postID,comment){
+    console.log(postID);
+    console.log(comment.text);
+    console.log(comment.name);
+    console.log(comment.email);
+    console.log(comment.id);
+    this.http.put(this.apiUrl+"/post/"+postID+"/newComment",comment);
+  }
+
+  update(post) {
+  this.http.put(this.apiUrl + 'post/' + post.id,post);
+}
+
+  delete(id){
+  this.http.delete(this.apiUrl+"post/"+id);
+  }
+
 }
