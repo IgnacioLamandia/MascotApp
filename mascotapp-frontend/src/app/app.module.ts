@@ -15,12 +15,21 @@ import { GeoCoderProvider } from '../providers/geocoder/geocoder';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
+import { AngularFireModule } from 'angularfire2';
+import { NgxErrorsModule } from '@ultimate/ngxerrors';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { firebaseConfig } from '../config';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { AuthService } from '../services/auth.service';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    SignupPage,
     CategoriesPage,
+    LoginPage,
     CreatePostPage,
     PostInfoPage
   ],
@@ -28,12 +37,16 @@ import { Camera } from '@ionic-native/camera';
     BrowserModule,
     HttpModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(firebaseConfig.fire),
+    NgxErrorsModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
+    SignupPage,
+    LoginPage,
     CategoriesPage,
     CreatePostPage,
     PostInfoPage
@@ -43,6 +56,8 @@ import { Camera } from '@ionic-native/camera';
     SplashScreen,
     HttpClientModule,
     NativeGeocoder,
+    AuthService,
+    AngularFireAuth,
     Geolocation,
     GeoCoderProvider,
     PostProvider,

@@ -1,19 +1,3 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>MascotApp</ion-title>
-
-    <ion-buttons end>
-      <button ion-button icon-only (click)="home()">
-        <ion-icon name="search"></ion-icon>
-      </button>
-    </ion-buttons>
-
-  </ion-navbar>
-</ion-header>
-
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
@@ -23,12 +7,21 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <ion-list-header *ngIf="auth.getEmail()">{{auth.getEmail()}}</ion-list-header>
+      <ion-item menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon [name]="p.icon" item-left></ion-icon>
         {{p.title}}
-      </button>
+      </ion-item>
     </ion-list>
+		<ion-item (click)="login()" *ngIf="!auth.authenticated">
+			<ion-icon name="log-in" item-left></ion-icon>
+			Iniciar sesíon
+		</ion-item>
+		<ion-item (click)="logout()" *ngIf="auth.authenticated">
+			<ion-icon name="log-out" item-left></ion-icon>
+			Cerrar sesión
+		</ion-item>
   </ion-content>
-
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
