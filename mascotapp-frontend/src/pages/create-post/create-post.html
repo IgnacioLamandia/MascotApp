@@ -7,35 +7,53 @@
 <ion-header>
 
   <ion-navbar>
+      <ion-title>Nueva Publicaci&oacute;n</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
+    <div class="create-post" [formGroup]="formPost" (ngSubmit)="saveData()" novalidate>
 	<ion-list>
+
     <ion-item>
   		<ion-label color="primary" class="labelEdicion" floating> T&iacute;tulo </ion-label>
-  		<ion-textarea  [(ngModel)]="post.title"></ion-textarea>
-  	</ion-item>
+  		<ion-input formControlName="title" type="text" placeholder="Titulo" name="title" [(ngModel)]="postData.title" ></ion-input>
+     </ion-item>
+     <ion-item *ngIf="formPost.get('title').errors && formPost.get('title').dirty">
+      <p *ngIf="formPost.get('title').hasError('required')" style="white-space: normal; color:red">El titulo es requerido.</p>
+      <p *ngIf="formPost.get('title').hasError('maxlength')" style="white-space: normal; color:red">El maximo de caracteres permitidos es 50.</p>
+      <p *ngIf="formPost.get('title').hasError('minlength')" style="white-space: normal; color:red">El minimo de caracteres permitidos es 4.</p>
+    </ion-item>
 
-	<ion-item>
-		<ion-label color="primary" class="labelEdicion" floating> Descripci&oacute;n </ion-label>
-		<ion-textarea  [(ngModel)]="post.description"></ion-textarea>
-	</ion-item>
+    <ion-item>
+      <ion-label color="primary" class="labelEdicion" floating> Descripci&oacute;n </ion-label>
+      <ion-input formControlName="description" type="text" placeholder="Descripcion" name="description" [(ngModel)]="postData.description" ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="formPost.get('description').errors && formPost.get('description').dirty">
+    <p *ngIf="formPost.get('description').hasError('required')" style="white-space: normal; color:red">La descripcion es requerida.</p>
+    <p *ngIf="formPost.get('description').hasError('maxlength')" style="white-space: normal; color:red">El maximo de caracteres permitidos es 200.</p>
+    <p *ngIf="formPost.get('description').hasError('minlength')" style="white-space: normal; color:red">El minimo de caracteres permitidos es 5.</p>
+    </ion-item>
 
 
   <ion-item>
     <ion-label color="primary" class="labelEdicion"> Imagen </ion-label>
-    <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+    <ion-input formControlName="image" type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+    <ion-item *ngIf="formPost.get('image').errors && formPost.get('image').dirty">
+        <p *ngIf="formPost.get('image').hasError('required')" style="white-space: normal; color:red">La imagen es requerida.</p>
+      </ion-item>
     <br/>
     <button round="true" item-end ion-button icon-locate-outline (click)="takeImage()" ><ion-icon name="camera"></ion-icon></button>
   </ion-item>
-
-
+  
       <ion-item>
-        <ion-label color="primary" class="labelEdicion" floating>Direcci&oacute;n</ion-label>
-        <ion-input #addressInput autocomplete="on" type="text" [(ngModel)]="post.address"></ion-input>
 
+        <ion-label color="primary" class="labelEdicion" floating>Direcci&oacute;n</ion-label>
+        <ion-input formControlName="address" #addressInput autocomplete="on" type="text" [(ngModel)]="post.address"></ion-input>
+        <ion-item *ngIf="formPost.get('address').errors && formPost.get('address').dirty">
+            <p *ngIf="formPost.get('address').hasError('required')" style="white-space: normal; color:red">La direccion es requerida.</p>
+          </ion-item>
         <br/>
         <button round="true" item-end ion-button icon-locate-outline (click)="getActualPosition()">
             <ion-icon name="locate"></ion-icon>
@@ -45,13 +63,17 @@
 
 	<ion-item>
 		<ion-label color="primary" class="labelEdicion" floating> Categor&iacute;a </ion-label>
-  		<ion-select [(ngModel)]="post.category">
+  		<ion-select formControlName="category" name="category" [(ngModel)]="postData.category">
     		<ion-option *ngFor="let category of categories" [value]="category">{{category}}</ion-option>
    		</ion-select>
    </ion-item>
-
-</ion-list>
-	<ion-item>
-    <button ion-button block (click)="savePost()">Publicar</button>
+   <ion-item *ngIf="formPost.get('category').errors && formPost.get('category').dirty">
+      <p *ngIf="formPost.get('category').hasError('required')" style="white-space: normal; color:red">La categoria es requerida.</p>
     </ion-item>
+
+  </ion-list>
+	<ion-item>
+    <button ion-button block type="submit" [disabled]="!formPost.valid" (click)="savePost()">Publicar</button>
+    </ion-item>
+    </div>
 </ion-content>
