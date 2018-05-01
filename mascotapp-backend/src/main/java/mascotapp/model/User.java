@@ -1,0 +1,32 @@
+package mascotapp.model;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
+public class User {
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	public Long id;
+	public String name;
+	public String email;
+	public String external_id;
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+	public List<Post> posts;
+	
+	public User() {		
+	}
+	
+	public User(String name, String email, String external_id, List<Post> posts) {		
+		this.name = name;
+		this.email = email;
+		this.external_id = external_id;
+		this.posts = posts;
+	}
+}
