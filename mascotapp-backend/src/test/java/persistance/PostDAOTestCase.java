@@ -1,23 +1,66 @@
 package persistance;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import mascotapp.model.Category;
+import mascotapp.model.Comment;
 import mascotapp.model.Post;
-import mascotapp.persistance.HibernatePostDAO;
 import mascotapp.service.HibernateDataService;
+import mascotapp.service.PostService;
 
 public class PostDAOTestCase {
 
-	private HibernatePostDAO  dao = new HibernatePostDAO();
-	private HibernateDataService service = new HibernateDataService();
+	private HibernateDataService service;
+	private PostService postService;
 	
 	@Before
 	public void setUp() {
+		postService = new PostService();		
+	}
+	
+	@Test
+	public void itShouldReturnSevenPosts() {
+		this.createTestPosts(); 
+		Collection<Post> posts = this.postService.getAll();		
+		Assert.assertEquals(7, posts.size());
+	}
+	
+	@Test
+	public void itShouldBePossibleToSaveAPost() {	
+		Set<Comment> comments = new HashSet<Comment>();
+		comments.add(new Comment("comment text", "name", "email"));
+		
+		Post aPost = new Post("title", "description", "image", 1f,
+				2f, "address", Category.ENCONTRADO);
+		aPost.setComments(comments);
+		this.postService.save(aPost);
+		
+		List<Post> posts = this.postService.getAll();	
+		Post savedPost = posts.get(0);
+		Assert.assertEquals(1, posts.size());
+		Assert.assertEquals("title", savedPost.title);
+		Assert.assertEquals("description", savedPost.description);
+		Assert.assertEquals("image", savedPost.image);
+		Assert.assertEquals(1f, savedPost.latitude, 0);
+		Assert.assertEquals(2f, savedPost.longitude, 0);
+		Assert.assertEquals("address", savedPost.address);
+		Assert.assertEquals(Category.ENCONTRADO, savedPost.category);
+		Assert.assertEquals(1, savedPost.comments.size());
+	}
+	
+	public void createTestPosts() {
+		service = new HibernateDataService();
+		
 		try {
 			service.createInitialData();
 		} catch (IOException e) {
@@ -25,9 +68,8 @@ public class PostDAOTestCase {
 		}
 	}
 	
-	@Test
-	public void itShouldReturnFourPosts() {
-		Collection<Post> posts = this.dao.getAll();		
-		Assert.assertEquals(4, posts.size());
-	}
+	@After
+	public void dropAll() {
+		postService.deleteAll();
+	}	
 }

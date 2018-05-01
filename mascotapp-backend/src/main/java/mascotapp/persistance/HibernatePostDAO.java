@@ -34,4 +34,21 @@ public class HibernatePostDAO extends GenericDAO<Post> {
 			session.close();
 		}		
 	}
+	
+	@SuppressWarnings("deprecation")
+	public void deleteAll() {
+		Session session = sessionFactory.openSession();
+		try {
+			session.beginTransaction();
+			String hql = "delete from Post";
+			Query<Post> query = session.createQuery(hql);
+			query.executeUpdate();
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			session.getTransaction().rollback();
+			throw new RuntimeException(e);
+		} finally {
+			session.close();
+		}		
+	}
 }

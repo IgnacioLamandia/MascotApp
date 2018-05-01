@@ -1,8 +1,7 @@
 package mascotapp.model;
 
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -29,8 +28,9 @@ public class Post {
 	public String address;		
 	@Enumerated(EnumType.ORDINAL)
 	public Category category;
-	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
-	public List<Comment> comments;
+	
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	public Set<Comment> comments;
 	
 	public Post() {		
 	}
@@ -45,7 +45,6 @@ public class Post {
 		this.longitude = longitude;
 		this.address = address;
 		this.category = category;	
-		this.comments = new ArrayList<Comment>();
 	}
 
 	public void setTitle(String title) {
@@ -76,7 +75,7 @@ public class Post {
 		this.category = category;
 	}
 	
-	public void setComments(List<Comment> comments) {
+	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
 	

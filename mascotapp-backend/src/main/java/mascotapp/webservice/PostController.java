@@ -62,16 +62,7 @@ public class PostController {
 		if (currentPost == null) {
 			return new ResponseEntity<Post>(HttpStatus.NOT_FOUND);
 		}
-		/*
-		currentPost.setTitle(post.title);
-		currentPost.setDescription(post.description);
-		currentPost.setImage(post.image);
-		currentPost.setLatitude(post.latitude);
-		currentPost.setLongitude(post.longitude);
-		currentPost.setAddress(post.address);
-		currentPost.setCategory(post.category);
-		currentPost.setComments(post.comments);
-*/
+
 		postService.update(currentPost);
 		return new ResponseEntity<Post>(currentPost, HttpStatus.OK);
 	}

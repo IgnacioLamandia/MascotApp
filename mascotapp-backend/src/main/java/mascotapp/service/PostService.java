@@ -49,5 +49,10 @@ public class PostService {
 	public List<Post> getAllByCategory(Category category) {	
 		return postDAO.getAllByCategory(category);
 	}
+	
+	@Transactional
+	public void deleteAll() {	
+		postDAO.deleteAll();			
+	}
 
 }
