@@ -8,6 +8,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { HttpModule } from '@angular/http';
 import { PostProvider } from '../providers/posts/post';
+import { UserProvider } from '../providers/user/user';
 import { CreatePostPage } from '../pages/create-post/create-post';
 import { PostInfoPage } from '../pages/post-info/post-info';
 import { HttpClientModule } from '@angular/common/http';
@@ -61,6 +62,7 @@ import { AuthService } from '../services/auth.service';
     Geolocation,
     GeoCoderProvider,
     PostProvider,
+    UserProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera
   ]
