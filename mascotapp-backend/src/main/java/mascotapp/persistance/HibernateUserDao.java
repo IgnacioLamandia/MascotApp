@@ -5,7 +5,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import mascotapp.model.Post;
 import mascotapp.model.User;
 
 @Repository
@@ -20,7 +19,7 @@ public class HibernateUserDao extends GenericDAO<User> {
 		try {
 			session.beginTransaction();
 			String hql = "delete from User";
-			Query<Post> query = session.createQuery(hql);
+			Query<User> query = session.createQuery(hql);
 			query.executeUpdate();
 			session.getTransaction().commit();
 		} catch (HibernateException e) {

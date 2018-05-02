@@ -29,7 +29,7 @@
 		<property name="show_sql">true</property>
 		
 		<property name="hibernate.hbm2ddl.auto">create-drop</property>
-
+		<mapping class="mascotapp.model.User" /> 
 		<mapping class="mascotapp.model.Post" />
 		<mapping class="mascotapp.model.Comment" /> 
 		

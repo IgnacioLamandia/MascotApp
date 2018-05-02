@@ -1,7 +1,6 @@
 package persistance;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -18,7 +17,7 @@ import mascotapp.model.Post;
 import mascotapp.service.HibernateDataService;
 import mascotapp.service.PostService;
 
-public class PostDAOTestCase {
+public class PostServiceTest {
 
 	private HibernateDataService service;
 	private PostService postService;

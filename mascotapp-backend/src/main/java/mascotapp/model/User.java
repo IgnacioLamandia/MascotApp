@@ -1,6 +1,6 @@
 package mascotapp.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -17,13 +17,13 @@ public class User {
 	public String name;
 	public String email;
 	public String external_id;
-	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
-	public List<Post> posts;
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	public Set<Post> posts;
 	
 	public User() {		
 	}
 	
-	public User(String name, String email, String external_id, List<Post> posts) {		
+	public User(String name, String email, String external_id, Set<Post> posts) {		
 		this.name = name;
 		this.email = email;
 		this.external_id = external_id;
