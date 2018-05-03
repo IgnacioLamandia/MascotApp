@@ -36,6 +36,7 @@ public class PostServiceTest {
 	
 	@Test
 	public void itShouldBePossibleToSaveAPost() {	
+		postService.deleteAll();
 		Set<Comment> comments = new HashSet<Comment>();
 		comments.add(new Comment("comment text", "name", "email"));
 		

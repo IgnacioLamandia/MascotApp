@@ -4,6 +4,7 @@ import { NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AuthService } from '../../services/auth.service';
 import { SignupPage } from '../signup/signup';
+import { UserProvider } from '../../providers/user/user';
 
 @IonicPage()
 @Component({
@@ -13,8 +14,10 @@ import { SignupPage } from '../signup/signup';
 export class LoginPage {
 	loginForm: FormGroup;
 	loginError: string;
+  user = {name:'', email:'', external_id:'', posts: null};
 
 	constructor(
+    private userProvider: UserProvider,
 		private navCtrl: NavController,
 		private auth: AuthService,
 		fb: FormBuilder
@@ -38,7 +41,7 @@ export class LoginPage {
 
 		this.auth.signInWithEmail(credentials)
 			.then(
-				() => this.navCtrl.setRoot(HomePage),
+				(user) => this.getUser(user),
 				error => this.loginError = error.message
 			);
   }
@@ -50,9 +53,29 @@ export class LoginPage {
   loginWithGoogle() {
     this.auth.signInWithGoogle()
       .then(
-        () => this.navCtrl.setRoot(HomePage),
+        (user) => this.getUserFromGoogle(user),
         error => console.log(error.message)
       );
   }
 
+  getUserFromGoogle(user) {
+      this.getUser(user.user);
+  }
+
+  getUser(user) {
+    console.log(user);
+    if(user.displayName) {
+      this.user.name = user.displayName;
+    }
+    else {
+      this.user.name = user.email;
+    }
+    this.user.email = user.email;
+    this.user.external_id = user.uid;
+    this.userProvider.saveUser(this.user).then((result) => {
+      this.navCtrl.setRoot(HomePage);
+    }, (err) => {
+      console.log(err);
+    });
+  }
 }

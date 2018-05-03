@@ -19,11 +19,11 @@ public class User {
 	public String external_id;
 	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	public Set<Post> posts;
-	
+
 	public User() {		
 	}
-	
-	public User(String name, String email, String external_id, Set<Post> posts) {		
+
+	public User(String name, String email, String external_id, Set<Post> posts) {
 		this.name = name;
 		this.email = email;
 		this.external_id = external_id;

@@ -23,6 +23,7 @@ import { firebaseConfig } from '../config';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { AuthService } from '../services/auth.service';
+import { Toast } from '@ionic-native/toast';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { AuthService } from '../services/auth.service';
   providers: [
     StatusBar,
     SplashScreen,
+    Toast,
     HttpClientModule,
     NativeGeocoder,
     AuthService,

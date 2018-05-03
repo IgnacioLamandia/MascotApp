@@ -11,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class SignupPage {
 	signupError: string;
 	form: FormGroup;
+	user = {name:'', email:'', external_id:''};
 
 	constructor(
 		fb: FormBuilder,
@@ -30,8 +31,13 @@ export class SignupPage {
 			password: data.password
 		};
 		this.auth.signUp(credentials).then(
-			() => this.navCtrl.setRoot(HomePage),
+			(user) => this.createUser(user),
 			error => this.signupError = error.message
 		);
   }
+
+	createUser(user) {
+		console.log('User: '+user);
+		this.navCtrl.setRoot(HomePage);
+	}
 }

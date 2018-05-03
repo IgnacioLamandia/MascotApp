@@ -9,6 +9,7 @@ import { HttpModule } from '@angular/http';
 import { PostProvider } from '../providers/posts/post';
 import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../services/auth.service';
+import { Toast } from '@ionic-native/toast';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,14 +22,14 @@ export class MyApp {
   constructor(public platform: Platform,
     public statusBar: StatusBar,
     private auth: AuthService,
+    private toast: Toast,
     private menu: MenuController,
     public splashScreen: SplashScreen) {
     this.initializeApp();
 
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },
-      { title: 'Categorías', component: CategoriesPage, icon: 'options' },
-      { title: 'Nueva Publicación', component: CreatePostPage, icon: 'paw' },
+      { title: 'Categorías', component: CategoriesPage, icon: 'options' }
     ];
   }
 
@@ -49,6 +50,17 @@ export class MyApp {
     this.nav.setRoot(LoginPage);
   }
 
+  newPost() {
+    this.menu.close();
+    if(this.auth.authenticated) {
+      this.nav.setRoot(CreatePostPage);
+    }
+    else {
+      //this.showToast('Tienes que iniciar seción');
+      this.nav.setRoot(LoginPage);
+    }
+  }
+
   logout() {
     this.menu.close();
 		this.auth.signOut();
@@ -57,5 +69,13 @@ export class MyApp {
 
   home(){
     this.nav.push(HomePage);
+  }
+
+  showToast(message) {
+    this.toast.show(message, '5000', 'center').subscribe(
+      toast => {
+        console.log(toast);
+      }
+    );
   }
 }
