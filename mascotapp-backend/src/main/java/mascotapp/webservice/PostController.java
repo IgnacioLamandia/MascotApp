@@ -39,16 +39,20 @@ public class PostController {
 		this.postService.save(post);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
-/*
-	@RequestMapping(value = "/post", method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<Post> createPost(@RequestBody Post input) {
-		Post post = new Post(input.title,input.description, input.image, input.latitude, input.longitude, input.address, input.category);
-		this.postService.save(post);
-		return ResponseEntity.status(HttpStatus.OK).build();
-	}
-*/
+	
+	@RequestMapping(value = "/post/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Post> getPost(@PathVariable("id") Long id) {
+        System.out.println("Fetching User with id " + id);
+         Post post = this.postService.getById(id);
+        if (post == null) {
+            System.out.println("User with id " + id + " not found");
+            return new ResponseEntity<Post>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Post>(post, HttpStatus.OK);
+    }
+	
 	@RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Post> deletePost(@PathVariable("id") long id) {
+	public ResponseEntity<Post> deletePost(@PathVariable("id") Long id) {
 		Post post = postService.getById(id);
 		if (post == null) {
 			return new ResponseEntity<Post>(HttpStatus.NOT_FOUND);
@@ -58,12 +62,12 @@ public class PostController {
 	}
 
 	@RequestMapping(value = "/post/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Post> updatePost(@PathVariable("id") long id, @RequestBody Post post) {
+	public ResponseEntity<Post> updatePost(@PathVariable("id") Long id, @RequestBody Post post) {
 		Post currentPost = postService.getById(id);
 		if (currentPost == null) {
 			return new ResponseEntity<Post>(HttpStatus.NOT_FOUND);
 		}
-		/*
+		
 		currentPost.setTitle(post.title);
 		currentPost.setDescription(post.description);
 		currentPost.setImage(post.image);
@@ -72,7 +76,7 @@ public class PostController {
 		currentPost.setAddress(post.address);
 		currentPost.setCategory(post.category);
 		currentPost.setComments(post.comments);
-*/
+
 		postService.update(currentPost);
 		return new ResponseEntity<Post>(currentPost, HttpStatus.OK);
 	}
@@ -88,7 +92,7 @@ public class PostController {
 	
 	 
 	  @RequestMapping(value = "/post/{id}/newComment", method = RequestMethod.PUT) 
-	  public ResponseEntity<Post> newCommentPost(@PathVariable("id") long id, @RequestBody Comment comment) { 
+	  public ResponseEntity<Post> newCommentPost(@PathVariable("id") Long id, @RequestBody Comment comment) { 
 	    Post currentPost = postService.getById(id); 
 	    if (currentPost == null) { 
 	      return new ResponseEntity<Post>(HttpStatus.NOT_FOUND); 
