@@ -41,7 +41,7 @@ export class CreatePostPage {
 			
 			this.formPost = this.fb.group({
 				title:[this.postData['title'],[Validators.required,Validators.minLength(4),Validators.maxLength(50)]],
-				description:[this.postData['description'],[Validators.required,Validators.minLength(5),Validators.maxLength(200)]],
+				description:[this.postData['description'],[Validators.required,Validators.minLength(5),Validators.maxLength(250)]],
 				image:[this.post['image'],[Validators.required]],
 				address:[this.post['address'],[Validators.required]],
 				category:[this.postData['category'],[Validators.required]],

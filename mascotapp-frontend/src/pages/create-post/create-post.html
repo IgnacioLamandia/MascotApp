@@ -32,13 +32,13 @@
     </ion-item>
     <ion-item *ngIf="formPost.get('description').errors && formPost.get('description').dirty">
     <p *ngIf="formPost.get('description').hasError('required')" style="white-space: normal; color:red">La descripcion es requerida.</p>
-    <p *ngIf="formPost.get('description').hasError('maxlength')" style="white-space: normal; color:red">El maximo de caracteres permitidos es 200.</p>
+    <p *ngIf="formPost.get('description').hasError('maxlength')" style="white-space: normal; color:red">El maximo de caracteres permitidos es 250.</p>
     <p *ngIf="formPost.get('description').hasError('minlength')" style="white-space: normal; color:red">El minimo de caracteres permitidos es 5.</p>
     </ion-item>
 
 
   <ion-item>
-    <ion-label color="primary" class="labelEdicion"> Imagen </ion-label>
+    <ion-label color="primary" class="labelEdicion" stacked > Imagen </ion-label>
     <ion-input formControlName="image" type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
     <ion-item *ngIf="formPost.get('image').errors && formPost.get('image').dirty">
         <p *ngIf="formPost.get('image').hasError('required')" style="white-space: normal; color:red">La imagen es requerida.</p>
