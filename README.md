@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/IgnacioLamandia/MascotApp.svg?branch=master)](https://travis-ci.org/IgnacioLamandia/MascotApp)
 
-Trabajo de Inserción Profesional de la Tecnicatura Universitaria en Programación informática de la Universidad Nacional de Quilmes realizado los alumnos Ignacio Lamandia y Jeremías Tomé.
+Trabajo de Inserción Profesional de la Tecnicatura Universitaria en Programación informática de la Universidad Nacional de Quilmes realizado por los alumnos Ignacio Lamandia y Jeremías Tomé.
 
 [Backlog](https://tree.taiga.io/project/ignaciolamandia-mascotapp/backlog)
 
@@ -23,3 +23,9 @@ MascotApp es una aplicación mobile que contiene dos funcionalidades principales
 [Diagrama de arquitectura](https://github.com/IgnacioLamandia/MascotApp/wiki/Diagrama-de-arquitectura)
 
 [Entrega 1](https://github.com/IgnacioLamandia/MascotApp/wiki/Entrega-1)
+
+[Entrega 2](https://github.com/IgnacioLamandia/MascotApp/wiki/Entrega-2)
+
+[Entrega 3](https://github.com/IgnacioLamandia/MascotApp/wiki/Entrega-3)
+
+[Entrega 4](https://github.com/IgnacioLamandia/MascotApp/wiki/Entrega-4)
