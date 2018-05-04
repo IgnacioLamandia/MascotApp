@@ -15,6 +15,8 @@ import { GeoCoderProvider } from '../providers/geocoder/geocoder';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
+import { EditPostPage } from '../pages/edit-post/edit-post';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { Camera } from '@ionic-native/camera';
     HomePage,
     CategoriesPage,
     CreatePostPage,
-    PostInfoPage
+    PostInfoPage,
+    EditPostPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,9 @@ import { Camera } from '@ionic-native/camera';
     HomePage,
     CategoriesPage,
     CreatePostPage,
-    PostInfoPage
+    PostInfoPage,
+    EditPostPage
+
   ],
   providers: [
     StatusBar,
