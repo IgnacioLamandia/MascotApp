@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from "rxjs/Observable";
+import { urlToNavGroupStrings } from 'ionic-angular/navigation/url-serializer';
 
 @Injectable()
 export class PostProvider {
@@ -21,6 +22,12 @@ export class PostProvider {
       });
     });
   }
+
+  getPostById(id): Observable<any>{
+    console.log(id);
+    let url = `${this.apiUrl}post/${id}`;
+    return this.http.get(url, id);
+}
 
   savePost(data) {
 
@@ -49,20 +56,68 @@ export class PostProvider {
 }
 
 addComment(postID,comment){
-    console.log(postID);
-    console.log(comment.text);
-    console.log(comment.name);
-    console.log(comment.email);
-    console.log(comment.id);
-    this.http.put(this.apiUrl+"/post/"+postID+"/newComment",comment);
+  return new Promise((resolve, reject) => {
+    let reqOpts = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+        params: new HttpParams()
+    };
+
+    let cJson = JSON.stringify(comment);
+    let url = `${this.apiUrl}post/${postID}/newComment`;
+    this.http.put(url,cJson,reqOpts)
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });;
   }
 
+  //NO ANDA BIEN
   update(post) {
-  this.http.put(this.apiUrl + 'post/' + post.id,post);
+    return new Promise((resolve, reject) => {
+      let reqOpts = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+          params: new HttpParams()
+      };
+
+        let url = `${this.apiUrl}post/${post.id}`;
+        let pJson = JSON.stringify(post);
+        console.log(url);
+        console.log(pJson);
+      this.http.put(url, pJson)
+      .subscribe(res => {
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      });
+    });;
 }
 
-  delete(id){
-  this.http.delete(this.apiUrl+"post/"+id);
+  delete(id) {
+    return new Promise((resolve, reject) => {
+      let reqOpts = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+          params: new HttpParams()
+      };
+
+      let url = `${this.apiUrl}post/${id}`;
+      this.http.delete(url,id)
+      .subscribe(res => {
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      });
+    });;
   }
 
 }
