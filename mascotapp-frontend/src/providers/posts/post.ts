@@ -54,9 +54,8 @@ export class PostProvider {
     console.log(category);
     return this.http.get(this.apiUrl + 'posts/' + category);
   }
-}
 
-addComment(postID,comment){
+addComment(postID,comment) {
   return new Promise((resolve, reject) => {
     let reqOpts = {
       headers: {
@@ -78,7 +77,7 @@ addComment(postID,comment){
   }
 
   //NO ANDA BIEN
-  update(post) {
+  updatePost(post : Post) {
     return new Promise((resolve, reject) => {
       let reqOpts = {
         headers: {
@@ -101,7 +100,7 @@ addComment(postID,comment){
     });;
 }
 
-  delete(id) {
+  deletePost(id) {
     return new Promise((resolve, reject) => {
       let reqOpts = {
         headers: {
@@ -120,5 +119,4 @@ addComment(postID,comment){
       });
     });;
   }
-
 }

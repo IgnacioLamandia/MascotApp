@@ -150,7 +150,7 @@ export class EditPostPage {
   }
 
   updatePost(){
-    this.postProvider.update(this.post);
+    this.postProvider.updatePost(this.post);
   }
 
 

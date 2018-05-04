@@ -112,7 +112,7 @@ export class PostInfoPage {
   }
 
   deletePost(){
-    this.postProvider.delete(this.post.id);
+    this.postProvider.deletePost(this.post.id);
   }
 
   editPost(){
