@@ -47,7 +47,8 @@ public class Post {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.address = address;
-		this.category = category;		
+		this.category = category;
+		this.comments = new HashSet<Comment>();
 	}
 
 	public void setTitle(String title) {
