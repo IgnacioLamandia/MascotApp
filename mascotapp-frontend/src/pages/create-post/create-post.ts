@@ -6,6 +6,7 @@ import { HomePage } from '../home/home';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import { GeoCoderProvider } from '../../providers/geocoder/geocoder';
 import { Camera,CameraOptions } from '@ionic-native/camera';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 declare var google;
 /**
@@ -30,11 +31,21 @@ export class CreatePostPage {
 	category = Object.keys(Category);
 	categories = this.category.slice(this.category.length/2);
 	postProvider : PostProvider;
+	formPost : FormGroup;
+	postData:any[] = [];
 
   	constructor(private alrtCtrl:AlertController, public navCtrl: NavController,
 			public navParams: NavParams, public restPosts: PostProvider, private camera: Camera,
-			private geolocation: Geolocation, private geoCoder: GeoCoderProvider) {
-  		this.postProvider = restPosts;
+			private geolocation: Geolocation, private geoCoder: GeoCoderProvider, private fb: FormBuilder, private alertCtrl:AlertController) {
+			this.postProvider = restPosts;
+			
+			this.formPost = this.fb.group({
+				title:[this.postData['title'],[Validators.required,Validators.minLength(4),Validators.maxLength(50)]],
+				description:[this.postData['description'],[Validators.required,Validators.minLength(5),Validators.maxLength(250)]],
+				image:[this.post['image'],[Validators.required]],
+				address:[this.post['address'],[Validators.required]],
+				category:[this.postData['category'],[Validators.required]],
+			})
   	}
 
 		@ViewChild('addressInput', { read: ElementRef })
@@ -78,7 +89,16 @@ export class CreatePostPage {
 		  myReader.readAsDataURL(file);
 		}
 
+		newPost(){
+			this.post.title = this.postData['title'];
+			this.post.description = this.postData['description'];
+			//this.post.image = this.postData['image'];
+			//this.post.address = this.postData['address'];  // los comentados se setean directo a post
+			this.post.category = this.postData['category'];
+		}
+
   	savePost(){
+			this.newPost();
 		  this.restPosts.savePost(this.post).then((result) => {
 				this.returnHome();
 		  }, (err) => {

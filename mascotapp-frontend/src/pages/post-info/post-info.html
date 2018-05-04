@@ -6,19 +6,46 @@
 </ion-header>
 
 <ion-content padding >
+<!--Informacion del post-->
+  <ion-card>
+      <ion-card-title text-center>{{post?.category}}</ion-card-title>
+      <img id="image" src="data:image/jpg;base64,{{post.image}}"  [width]="imgWidth" [height]="imgHeight"/>
+    <ion-card-content>
     <div class="container">
-      <h2>{{post.category}}</h2>
+        <ion-card-title>{{post?.title}}</ion-card-title>
     </div>
     <div class="container">
-       <img id="image" src="data:image/jpg;base64,{{post.image}}"  [width]="imgWidth" [height]="imgHeight"/>
-       <h4>{{post.title}}</h4>
-       <h4>{{post.description}}</h4>
-       <h4>{{post.address}}</h4>
+      <ion-card-content>
+       <h4>{{post?.description}}</h4>
+       <br>
+       <ion-icon name="pin"></ion-icon> {{post?.address}}
+      </ion-card-content>
     </div>
+  </ion-card-content>
+  </ion-card>
 
+<!-- MAPA -->
     <div id="map"></div>
 
-    <div class="comment-list">
+<!-- Botones de Eliminar y Editar-->
+ 
+    <div class="edit-delete-buttons" *ngIf="isMyPost()">
+      <ion-row> 
+        <ion-col>
+          <ion-item>
+            <button ion-button block color="danger" (click)="deletePost()"><ion-icon name='trash'></ion-icon> ELiminar</button>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <button ion-button block color="secondary" (click)="editPost()"><ion-icon name='clipboard'></ion-icon> Editar</button>
+          </ion-item>
+        </ion-col>
+      </ion-row> 
+    </div>
+  
+<!-- Lista de comentarios-->
+    <div class="comment-list" *ngIf="isEmptyComments()">
       <h4>Comentarios:</h4>
       <ion-card [ngClass]="{'ionic-container': isDesktop }" *ngFor="let com of comments" fixed>
         <ion-item>
@@ -30,27 +57,45 @@
       </ion-card>
     </div>
 
-    <div class="comment-box">
-      <h4>Deja tu comentario</h4>
+<!-- Caja de comentarios-->
+    <div class="comment-box" [formGroup]="formularioComment" (ngSubmit)="saveData()" novalidate>
+      <ion-card>
+      <ion-card-title text-center>Deja tu comentario</ion-card-title>
+      
     	<ion-list>
     	  <ion-item>
-    		  <ion-label color="primary" class="labelEdicion" floating> Texto </ion-label>
-    		  <ion-textarea  [(ngModel)]="comment.text"></ion-textarea>
-    	 </ion-item>
+          <ion-label color="primary" class="labelEdicion" floating> Mensaje </ion-label>
+          <ion-input formControlName="text" type="text" placeholder="Mensaje" name="text" [(ngModel)]="commentData.text" ></ion-input>
+       </ion-item>
+       <ion-item *ngIf="formularioComment.get('text').errors && formularioComment.get('text').dirty">
+        <p *ngIf="formularioComment.get('text').hasError('required')" style="white-space: normal; color:red">El mensaje es requerido.</p>
+        <p *ngIf="formularioComment.get('text').hasError('maxlength')" style="white-space: normal; color:red">El maximo de caracteres permitidos es 200.</p>
+        <p *ngIf="formularioComment.get('text').hasError('minlength')" style="white-space: normal; color:red">El minimo de caracteres permitidos es 5.</p>
+      </ion-item>
 
        <ion-item>
          <ion-label color="primary" class="labelEdicion" floating> Nombre </ion-label>
-         <ion-textarea  [(ngModel)]="comment.name"></ion-textarea>
+         <ion-input formControlName="name" type="text" placeholder="Nombre" name="name" [(ngModel)]="commentData.name" ></ion-input>
        </ion-item>
+       <ion-item *ngIf="formularioComment.get('name').errors && formularioComment.get('name').dirty">
+        <p *ngIf="formularioComment.get('name').hasError('required')" style="white-space: normal; color:red">El nombre es requerido.</p>
+        <p *ngIf="formularioComment.get('name').hasError('maxlength')" style="white-space: normal; color:red">El maximo de caracteres permitidos es 50.</p>
+        <p *ngIf="formularioComment.get('name').hasError('minlength')" style="white-space: normal; color:red">El minimo de caracteres permitidos es 4.</p>
+      </ion-item>
 
        <ion-item>
          <ion-label color="primary" class="labelEdicion" floating> Email </ion-label>
-         <ion-textarea  [(ngModel)]="comment.email"></ion-textarea>
-       </ion-item>
-    </ion-list>
-    	<ion-item>
-        <button ion-button block (click)="saveComment()">Comentar</button>
+         <ion-input formControlName="email" type="email" placeholder="Email" name="email" [(ngModel)]="commentData.email" ></ion-input>
       </ion-item>
+      <ion-item *ngIf="formularioComment.get('email').errors && formularioComment.get('email').dirty">
+        <p *ngIf="formularioComment.get('email').hasError('required')" style="white-space: normal; color:red">El email es requerido.</p>
+        <p *ngIf="formularioComment.get('email').hasError('email')" style="white-space: normal; color:red">El email indicado no es valido.</p>
+      </ion-item>
+    </ion-list>
+    <ion-item>
+      <button ion-button block type="submit" [disabled]="!formularioComment.valid" (click)="saveComment()" >Comentar</button>
+    </ion-item>
+  </ion-card>
     </div>
-    
+
 </ion-content>
