@@ -55,4 +55,8 @@ export class HomePage {
   viewPost(post:Post){
     this.navCtrl.push(PostInfoPage,{ post : post });
   }
+
+  ionViewWillEnter(){
+    this.getAllPosts();
+  }
 }

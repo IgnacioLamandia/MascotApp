@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { Post } from '../../model/Post';
 import { PostProvider } from '../../providers/posts/post';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HomePage } from '../home/home';
 import { EditPostPage } from '../edit-post/edit-post';
 
 declare var google;
@@ -112,7 +113,25 @@ export class PostInfoPage {
   }
 
   deletePost(){
-    this.postProvider.deletePost(this.post.id);
+    this.postProvider.deletePost(this.post.id).then((result) => {
+      this.returnHome();
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  returnHome() {
+    let confirmacion= this.alertCtrl.create({
+      title:'Confirmacion de eliminacion',
+      message: 'Su publicación se elimino correctamente',
+      buttons:[{
+        text:'Ok',
+        handler:()=>{
+          this.navCtrl.push(HomePage);
+        }
+      }]
+    });
+    confirmacion.present();
   }
 
   editPost(){
