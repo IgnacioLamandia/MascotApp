@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { Post } from '../../model/Post';
 import { PostProvider } from '../../providers/posts/post';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EditPostPage } from '../edit-post/edit-post';
 
 declare var google;
 
@@ -23,7 +24,6 @@ export class PostInfoPage {
   postProvider : PostProvider;
   formularioComment : FormGroup;
   commentData:any[] = [];
-  id : number = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restPosts: PostProvider,private fb: FormBuilder, private alertCtrl:AlertController) {
     this.imgHeight="300";
@@ -77,8 +77,6 @@ export class PostInfoPage {
   }
 
   newComment(){
-    this.id = this.id+100;
-    this.comment.id = this.id;
     this.comment.text = this.commentData['text'];
     this.comment.name = this.commentData['name'];
     this.comment.email = this.commentData['email'];
@@ -86,10 +84,8 @@ export class PostInfoPage {
 
   saveComment(){
     this.newComment();
-    console.log(this.comment);
     this.post.comments.push(this.comment);
         //conectarse con el provider
-        console.log(this.post);
         this.postProvider.addComment(this.post.id, this.comment);
 
     this.comment = {text:'', name:'', email:'', id:0};
@@ -116,11 +112,11 @@ export class PostInfoPage {
   }
 
   deletePost(){
-    this.postProvider.delete(this.post.id)
+    this.postProvider.delete(this.post.id);
   }
 
-  editPost(post:Post){
-    //this.navCtrl.push(EditPostPage,{ post : post });
+  editPost(){
+    this.navCtrl.push(EditPostPage,{ id : this.post.id });
   }
 
 }

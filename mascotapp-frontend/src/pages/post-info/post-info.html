@@ -6,25 +6,45 @@
 </ion-header>
 
 <ion-content padding >
+<!--Informacion del post-->
+  <ion-card>
+      <ion-card-title text-center>{{post?.category}}</ion-card-title>
+      <img id="image" src="data:image/jpg;base64,{{post.image}}"  [width]="imgWidth" [height]="imgHeight"/>
+    <ion-card-content>
     <div class="container">
-      <h2>{{post.category}}</h2>
+        <ion-card-title>{{post?.title}}</ion-card-title>
     </div>
     <div class="container">
-       <img id="image" src="data:image/jpg;base64,{{post.image}}"  [width]="imgWidth" [height]="imgHeight"/>
-       <h4>{{post.title}}</h4>
-       <h4>{{post.description}}</h4>
-       <h4>{{post.address}}</h4>
+      <ion-card-content>
+       <h4>{{post?.description}}</h4>
+       <br>
+       <ion-icon name="pin"></ion-icon> {{post?.address}}
+      </ion-card-content>
     </div>
+  </ion-card-content>
+  </ion-card>
 
+<!-- MAPA -->
     <div id="map"></div>
+
+<!-- Botones de Eliminar y Editar-->
+ 
     <div class="edit-delete-buttons" *ngIf="isMyPost()">
-      <ion-item>
-          <button ion-button block color="danger" (click)="deletePost()"><ion-icon name='trash'></ion-icon> ELiminar</button>
-      </ion-item>
-      <ion-item>
-        <button ion-button block color="secondary" (click)="editPost(post)"><ion-icon name='clipboard'></ion-icon> Editar</button>
-      </ion-item>
+      <ion-row> 
+        <ion-col>
+          <ion-item>
+            <button ion-button block color="danger" (click)="deletePost()"><ion-icon name='trash'></ion-icon> ELiminar</button>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <button ion-button block color="secondary" (click)="editPost()"><ion-icon name='clipboard'></ion-icon> Editar</button>
+          </ion-item>
+        </ion-col>
+      </ion-row> 
     </div>
+  
+<!-- Lista de comentarios-->
     <div class="comment-list" *ngIf="isEmptyComments()">
       <h4>Comentarios:</h4>
       <ion-card [ngClass]="{'ionic-container': isDesktop }" *ngFor="let com of comments" fixed>
@@ -37,8 +57,10 @@
       </ion-card>
     </div>
 
+<!-- Caja de comentarios-->
     <div class="comment-box" [formGroup]="formularioComment" (ngSubmit)="saveData()" novalidate>
-      <h4>Deja tu comentario</h4>
+      <ion-card>
+      <ion-card-title text-center>Deja tu comentario</ion-card-title>
       
     	<ion-list>
     	  <ion-item>
@@ -73,6 +95,7 @@
     <ion-item>
       <button ion-button block type="submit" [disabled]="!formularioComment.valid" (click)="saveComment()" >Comentar</button>
     </ion-item>
+  </ion-card>
     </div>
 
 </ion-content>
