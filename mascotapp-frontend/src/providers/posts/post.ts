@@ -76,8 +76,7 @@ addComment(postID,comment) {
     });;
   }
 
-  //NO ANDA BIEN
-  updatePost(post : Post) {
+  updatePost(id, post) {
     return new Promise((resolve, reject) => {
       let reqOpts = {
         headers: {
@@ -87,11 +86,9 @@ addComment(postID,comment) {
           params: new HttpParams()
       };
 
-        let url = `${this.apiUrl}post/${post.id}`;
+        let url = `${this.apiUrl}post/${id}`;
         let pJson = JSON.stringify(post);
-        console.log(url);
-        console.log(pJson);
-      this.http.put(url, pJson)
+      this.http.put(url, pJson,reqOpts)
       .subscribe(res => {
         resolve(res);
       }, (err) => {
