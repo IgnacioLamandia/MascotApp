@@ -86,6 +86,22 @@ public class GenericDAO<T> {
 			session.close();
 		}
 	}
+	
+	@SuppressWarnings("deprecation")
+	public T getBy(Long id, String hql) {
+		Session session = sessionFactory.openSession();
+		try {
+			session.beginTransaction();			
+			Query<T> query = session.createQuery(hql, entityType);
+			query.setParameter("unId", id);
+			return query.getSingleResult();
+		} catch (HibernateException e) {
+			session.getTransaction().rollback();
+			throw new RuntimeException(e);
+		} finally {
+			session.close();
+		}
+	}
 
 	@SuppressWarnings("deprecation")
 	public List<T> getAll() {

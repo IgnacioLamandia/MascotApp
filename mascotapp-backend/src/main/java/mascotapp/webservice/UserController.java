@@ -1,5 +1,6 @@
 package mascotapp.webservice;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,17 @@ public class UserController {
 	
 	@RequestMapping(value = "/user", method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<Void> saveUser(@RequestBody User user) throws Exception {
-		this.userService.save(user);
+		this.userService.upsertUser(user);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
+	
+	/*@RequestMapping(value = "/user", method = RequestMethod.POST, 
+			consumes = "application/json", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Post>> getUser() {
+		List<Post> posts = this.postService.getAll();
+		if (posts.isEmpty() || posts == null) {
+			return new ResponseEntity<List<Post>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
+	}*/
 }

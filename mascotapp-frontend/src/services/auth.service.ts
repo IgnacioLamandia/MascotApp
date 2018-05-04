@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import AuthProvider = firebase.auth.AuthProvider;
+import { UserProvider } from '../providers/user/user';
 
 @Injectable()
 export class AuthService {
 	public user: firebase.User;
-
-	constructor(public afAuth: AngularFireAuth) {
+	userToSave = {name:'', email:'', external_id:'', posts: null};
+	constructor(public afAuth: AngularFireAuth,
+		private userProvider: UserProvider) {
 		afAuth.authState.subscribe(user => {
 			this.user = user;
 		});
@@ -20,8 +22,13 @@ export class AuthService {
 	}
 
 	signUp(credentials) {
-		return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email,credentials.password);
+		let provider = this;
+		return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email,credentials.password)
+			.then(function(user) {
+				provider.saveUser(user);
+    	});
 	}
+
 
 	get authenticated(): boolean {
 		return this.user !== null;
@@ -65,4 +72,20 @@ export class AuthService {
 		}
 	}
 
+	saveUser(user) {
+    console.log(user);
+    if(user.displayName) {
+      this.userToSave.name = user.displayName;
+    }
+    else {
+      this.userToSave.name = user.email;
+    }
+    this.userToSave.email = user.email;
+    this.userToSave.external_id = user.uid;
+    this.userProvider.saveUser(this.userToSave).then((result) => {
+      console.log('User saved')
+    }, (err) => {
+      console.log(err);
+    });
+  }
 }

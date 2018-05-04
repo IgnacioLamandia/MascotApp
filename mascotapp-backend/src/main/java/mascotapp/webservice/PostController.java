@@ -38,14 +38,7 @@ public class PostController {
 		this.postService.save(post);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
-/*
-	@RequestMapping(value = "/post", method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<Post> createPost(@RequestBody Post input) {
-		Post post = new Post(input.title,input.description, input.image, input.latitude, input.longitude, input.address, input.category);
-		this.postService.save(post);
-		return ResponseEntity.status(HttpStatus.OK).build();
-	}
-*/
+
 	@RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Post> deletePost(@PathVariable("id") long id) {
 		Post post = postService.getById(id);
@@ -62,7 +55,6 @@ public class PostController {
 		if (currentPost == null) {
 			return new ResponseEntity<Post>(HttpStatus.NOT_FOUND);
 		}
-
 		postService.update(currentPost);
 		return new ResponseEntity<Post>(currentPost, HttpStatus.OK);
 	}
@@ -76,16 +68,4 @@ public class PostController {
 		return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
 	}
 	
-	/* 
-	  @RequestMapping(value = "/post/{id}/newComment", method = RequestMethod.PUT) 
-	  public ResponseEntity<Post> newCommentPost(@PathVariable("id") long id, @RequestBody Comment comment) { 
-	    Post currentPost = postService.getById(id); 
-	    if (currentPost == null) { 
-	      return new ResponseEntity<Post>(HttpStatus.NOT_FOUND); 
-	    } 
-	    Comment newComment = new Comment(comment.text, comment.name, comment.email); 
-	    currentPost.addComment(newComment); 
-	    postService.update(currentPost); 
-	    return new ResponseEntity<Post>(currentPost, HttpStatus.OK); 
-	  }*/ 
 }

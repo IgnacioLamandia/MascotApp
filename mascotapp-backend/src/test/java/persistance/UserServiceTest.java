@@ -29,7 +29,6 @@ public class UserServiceTest {
 	public void itShouldBePossibleToSaveAnUser() {			
 		User anUser = new User("test name", "test email", "12345", new HashSet<Post>());
 		this.service.save(anUser);
-		
 		List<User> users = this.service.getAll();	
 		User savedUser = users.get(0);
 		Assert.assertEquals(1, users.size());
@@ -72,6 +71,39 @@ public class UserServiceTest {
 		Assert.assertEquals("address", savedPost.address);
 		Assert.assertEquals(Category.ENCONTRADO, savedPost.category);
 		Assert.assertEquals(1, savedPost.comments.size());
+	}
+	
+	@Test
+	public void itShouldBePossibleToObtainAUserByHisId() {			
+		User anUser = new User("test name", "test email", "12345", new HashSet<Post>());
+		this.service.save(anUser);
+		User savedUser = this.service.getById(anUser.id);
+		Assert.assertEquals("test name", savedUser.name);
+		Assert.assertEquals("test email", savedUser.email);
+		Assert.assertEquals("12345", savedUser.external_id);
+		Assert.assertEquals(0, savedUser.posts.size());
+	}
+	
+	@Test
+	public void itShouldBePossibleToObtainAUserByHisExternalId() {			
+		User anUser = new User("test name", "test email", "12345", new HashSet<Post>());
+		this.service.save(anUser);
+		User savedUser = this.service.getByExternalId("12345");
+		Assert.assertEquals("test name", savedUser.name);
+		Assert.assertEquals("test email", savedUser.email);
+		Assert.assertEquals("12345", savedUser.external_id);
+		Assert.assertEquals(0, savedUser.posts.size());
+	}
+	
+	@Test 
+	public void itShouldNotBePossibleToCreateTwoUsersWithTheSameExternalId() {			
+		User anUser = new User("test name", "test email", "12345", new HashSet<Post>());
+		this.service.save(anUser);		
+		User anUser2 = new User("test name 2", "test email 2", "12345", new HashSet<Post>());
+		this.service.upsertUser(anUser2);
+		
+		List<User> savedUsers = this.service.getAll();
+		Assert.assertEquals(1, savedUsers.size());
 	}
 	
 	@After

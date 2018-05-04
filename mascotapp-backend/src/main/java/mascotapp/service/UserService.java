@@ -2,6 +2,8 @@ package mascotapp.service;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,10 +24,25 @@ public class UserService {
 	public void save(User user) {	
 		userDAO.save(user);			
 	}
+	
+	@Transactional
+	public User getByExternalId(String externalId) {	
+		return userDAO.getByExternalId(externalId);			
+	}
 
 	@Transactional
 	public void update(User user) {	
 		userDAO.update(user);		
+	}
+	
+	@Transactional
+	public void upsertUser(User anUser) {
+		try {
+			userDAO.getByExternalId(anUser.external_id);
+		}
+		catch(NoResultException e) {
+			userDAO.save(anUser);
+		}		
 	}
 
 	@Transactional

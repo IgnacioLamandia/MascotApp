@@ -31,13 +31,8 @@ export class SignupPage {
 			password: data.password
 		};
 		this.auth.signUp(credentials).then(
-			(user) => this.createUser(user),
+			(user) => this.navCtrl.setRoot(HomePage),
 			error => this.signupError = error.message
 		);
   }
-
-	createUser(user) {
-		console.log('User: '+user);
-		this.navCtrl.setRoot(HomePage);
-	}
 }

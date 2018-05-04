@@ -21,7 +21,6 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController,
     public plt :Platform, private postService: PostProvider) {
-
   }
 
   ngOnInit(){
