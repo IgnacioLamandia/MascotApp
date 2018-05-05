@@ -55,7 +55,7 @@ public class HibernateDataService {
 		Post post5 = new Post("Perro encontrado", "Fue encontrado en el centro de quilmes con collar gris", 
 				Encoder.encode(dogs.get(1), "jpg"),-34.785178f,-58.200352f,"Ranelagh, Buenos Aires, Argentina",Category.ENCONTRADO);
 		Post post6 = new Post("Perro perdido", "se lo vio por ultima vez en berazategui", Encoder.encode(dogs.get(2), "jpg"),
-				-34.785178f,-58.200352f,"Berazategui",Category.PERDIDO);
+				-34.785178f,-58.200352f,"Ranelagh, Buenos Aires, Argentina",Category.PERDIDO);
 		Post post7 = new Post("Zuri Nuestra bella princesa", "Zuri ya esta lista para dejar el refu y llenar de amor a una familia, tamaño de mediano a grande, se entrega castrada y con contrato de adopción!\n" + 
 				"Veni a conocer a ZURI en nuestra próxima jornada de visita!",
 				Encoder.encode(dogs.get(3), "jpg"),-34.785178f,-58.200352f, "Ranelagh, Buenos Aires, Argentina",Category.ADOPCION);
