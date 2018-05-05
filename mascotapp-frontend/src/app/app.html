@@ -1,7 +1,7 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>MascotApp</ion-title>
+		<ion-title> <img src="assets/imgs/logo.png" height="25px" width="30px"> MascotApp </ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -12,7 +12,6 @@
         <ion-icon [name]="p.icon" item-left></ion-icon>
         {{p.title}}
       </ion-item>
-    </ion-list>
     <ion-item (click)="newPost()">
 			<ion-icon name="paw" item-left></ion-icon>
 			Nueva publicación
@@ -25,6 +24,7 @@
 			<ion-icon name="log-out" item-left></ion-icon>
 			Cerrar sesión
 		</ion-item>
+		  </ion-list>
   </ion-content>
 </ion-menu>
 
