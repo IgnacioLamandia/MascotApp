@@ -16,7 +16,9 @@
 <ion-content padding>
     <div class="create-post" [formGroup]="formPost" (ngSubmit)="saveData()" novalidate>
 	<ion-list>
-
+    <ion-item>
+      <img [src]="imagePost" alt="image">
+    </ion-item>
     <ion-item>
   		<ion-label color="primary" class="labelEdicion" floating> T&iacute;tulo </ion-label>
   		<ion-input formControlName="title" type="text" placeholder="Titulo" name="title" [(ngModel)]="postData.title" ></ion-input>
@@ -43,9 +45,9 @@
       <button round="true" item-end ion-button icon-locate-outline (click)="takeImage()" ><ion-icon name="camera"></ion-icon></button>
     </ion-item>
     <ion-item *ngIf="formPost.get('image').errors && formPost.get('image').dirty">
-        <p *ngIf="formPost.get('image').hasError('required')" style="white-space: normal; color:red">La imagen es requerida.</p>  
+        <p *ngIf="formPost.get('image').hasError('required')" style="white-space: normal; color:red">La imagen es requerida.</p>
     </ion-item>
-  
+
       <ion-item>
 
         <ion-label color="primary" class="labelEdicion" floating>Direcci&oacute;n</ion-label>

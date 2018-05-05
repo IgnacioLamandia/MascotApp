@@ -92,9 +92,7 @@ export class PostInfoPage {
     this.comment = {text:'', name:'', email:'', id:0};
     this.formularioComment.reset()
     this.commentData = [];
-
-}
-
+  }
   /**
    * evento que se ejecuta al enviar la informacion, este solo cumple la funcion de mostrar un mensaje de informacion,
    * resetea el formulario y sus validaciones y limpia el parametro datosUsuario para el nuevo ingreso de informacion.

@@ -17,8 +17,8 @@ declare var google;
   providers:[ Geolocation, GeoCoderProvider,PostProvider]
 })
 export class EditPostPage {
-
   id : number;
+  imagePost:any;
   post = {title:'', description:'', image:'', latitude:0, longitude:0, address:'', category: ''};
 	category = Object.keys(Category);
 	categories = this.category.slice(this.category.length/2);
@@ -30,15 +30,14 @@ export class EditPostPage {
     private geolocation: Geolocation, private geoCoder: GeoCoderProvider, private fb: FormBuilder, private alertCtrl:AlertController) {
     this.postProvider = restPosts;
     this.id = this.navParams.get('id');
-    //this.post = this.cargarPost(this.id);
     this.postProvider.getPostById(this.id).subscribe(post => {
       this.post = post;
+      this.imagePost = "data:image/jpg;base64,"+post.image;
     })
-    
+
     this.formPost = this.fb.group({
       title:[this.post['title'],[Validators.required,Validators.minLength(4),Validators.maxLength(50)]],
       description:[this.post['description'],[Validators.required,Validators.minLength(5),Validators.maxLength(250)]],
-      //image:[this.post['image'],[Validators.required]],
       address:[this.post['address'],[Validators.required]],
       category:[this.post['category'],[Validators.required]],
     })
@@ -46,27 +45,7 @@ export class EditPostPage {
 
   @ViewChild('addressInput', { read: ElementRef })
   public searchElementRef;
-/*
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EditPostPage');
-    this.postProvider.getPostById(this.id).subscribe(post => {
-      this.post = post;
-    })
-  }
 
-  ngAfterViewInit(){
-    const nativeHomeInputBox = this.searchElementRef.nativeElement.getElementsByTagName('input')[0];
-    let options = {
-      types: [],
-      componentRestrictions: {country: "ar"}
-    };
-    let autocomplete1 = new google.maps.places.Autocomplete(nativeHomeInputBox, options);
-    google.maps.event.addListener(autocomplete1, 'place_changed', function() {
-      console.log("FROM CHANGED!" + this.post);
-    });
-    console.log( this.post.address);
-  }
-*/
   @ViewChild('fileInp', { read: ElementRef })
   public fileInput;
 
@@ -89,29 +68,30 @@ export class EditPostPage {
     console.log('uploadImage'),
     console.log(this.fileInput),
     this.fileInput.nativeElement.click();
-}
-
-changeListener($event) : void {
-  console.log('changeListener');
-  this.readThis($event.target);
-}
-
-readThis(inputValue: any): void {
-  var file:File = inputValue.files[0];
-  var myReader:FileReader = new FileReader();
-  myReader.onloadend = (e) => {
-    var solution = myReader.result.split("base64,");
-    this.post.image = solution[1];
   }
-  myReader.readAsDataURL(file);
-}
+
+  changeListener($event) : void {
+    console.log('changeListener');
+    this.readThis($event.target);
+  }
+
+  readThis(inputValue: any): void {
+    var file:File = inputValue.files[0];
+    var myReader:FileReader = new FileReader();
+    myReader.onloadend = (e) => {
+      var solution = myReader.result.split("base64,");
+      this.post.image = solution[1];
+      this.imagePost = "data:image/jpg;base64,"+this.post.image;
+    }
+    myReader.readAsDataURL(file);
+  }
 
   cargarPost(id:number) {
     this.id=id;
     this.postProvider.getPostById(this.id).subscribe(post => {
       this.post = post;
     })
-    //return this.postProvider.getPostById(id); 
+    //return this.postProvider.getPostById(id);
   }
 
   getPosition() {
@@ -165,22 +145,20 @@ readThis(inputValue: any): void {
     confirmacion.present();
   }
 
-takeImage(){
-  const options: CameraOptions = {
-    quality: 100,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
+  takeImage(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((imageData) => {
+     let newImage = 'data:image/jpeg;base64,' + imageData;
+     this.post.image = newImage;
+    }, (err) => {
+      console.log(err);
+    });
   }
-
-  this.camera.getPicture(options).then((imageData) => {
-
-   let newImage = 'data:image/jpeg;base64,' + imageData;
-   this.post.image = newImage;
-  }, (err) => {
-    console.log(err);
-  });
-}
 
   updatePost(){
     this.postProvider.updatePost(this.id, this.post).then((result) => {
@@ -189,8 +167,6 @@ takeImage(){
       console.log(err);
     });
   }
-    //this.navCtrl.popToRoot();
-  //}
 
   cancelUpdate() {
       this.navCtrl.pop();

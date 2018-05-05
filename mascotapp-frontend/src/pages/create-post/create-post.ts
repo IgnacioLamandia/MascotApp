@@ -27,6 +27,7 @@ declare var google;
 })
 
 export class CreatePostPage {
+	imagePost:any = "assets/imgs/icon-no-image.svg";
 	post = {title:'', description:'', image:'', latitude:0, longitude:0, address:'', category: Category.PERDIDO};
 	category = Object.keys(Category);
 	categories = this.category.slice(this.category.length/2);
@@ -38,7 +39,7 @@ export class CreatePostPage {
 			public navParams: NavParams, public restPosts: PostProvider, private camera: Camera,
 			private geolocation: Geolocation, private geoCoder: GeoCoderProvider, private fb: FormBuilder, private alertCtrl:AlertController) {
 			this.postProvider = restPosts;
-			
+
 			this.formPost = this.fb.group({
 				title:[this.postData['title'],[Validators.required,Validators.minLength(4),Validators.maxLength(50)]],
 				description:[this.postData['description'],[Validators.required,Validators.minLength(5),Validators.maxLength(250)]],
@@ -69,13 +70,10 @@ export class CreatePostPage {
 		}
 
 		uploadImage() {
-				console.log('uploadImage'),
-				console.log(this.fileInput),
 				this.fileInput.nativeElement.click();
 		}
 
 		changeListener($event) : void {
-			console.log('changeListener');
   		this.readThis($event.target);
 		}
 
@@ -85,6 +83,7 @@ export class CreatePostPage {
 		  myReader.onloadend = (e) => {
 				var solution = myReader.result.split("base64,");
 		    this.post.image = solution[1];
+				this.imagePost = "data:image/jpg;base64,"+this.post.image;
 		  }
 		  myReader.readAsDataURL(file);
 		}
@@ -92,8 +91,6 @@ export class CreatePostPage {
 		newPost(){
 			this.post.title = this.postData['title'];
 			this.post.description = this.postData['description'];
-			//this.post.image = this.postData['image'];
-			//this.post.address = this.postData['address'];  // los comentados se setean directo a post
 			this.post.category = this.postData['category'];
 		}
 
