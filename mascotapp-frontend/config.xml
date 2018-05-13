@@ -11,6 +11,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="loadUrlTimeoutValue" value="60000" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
@@ -87,6 +88,7 @@
     <allow-navigation href="http://localhost:8100" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="cordova-plugin-x-toast" spec="^2.6.2" />
+    <allow-navigation href="http://192.168.0.10:8100" />
+    <engine name="android" spec="6.4.0" />
     <engine name="browser" spec="5.0.3" />
-    <engine name="android" spec="~6.4.0" />
 </widget>

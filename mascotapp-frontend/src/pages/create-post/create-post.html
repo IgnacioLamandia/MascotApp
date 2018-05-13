@@ -42,7 +42,8 @@
     <ion-item>
       <input formControlName="image" type="file" accept="image/*" (change)="changeListener($event)" id="file-input" style="position:absolute; top: -999999px" #fileInp>
       <button ion-button block (click)="uploadImage()">Subir fotos</button>
-      <button round="true" item-end ion-button icon-locate-outline (click)="takeImage()" ><ion-icon name="camera"></ion-icon></button>
+      <button ion-button round item-end  icon-start (click)="getPicture()"><ion-icon name="camera"></ion-icon> </button>
+      <!--button round="true" item-end ion-button icon-locate-outline (click)="takeImage()" ><ion-icon name="camera"></ion-icon></button-->
     </ion-item>
     <ion-item *ngIf="formPost.get('image').errors && formPost.get('image').dirty">
         <p *ngIf="formPost.get('image').hasError('required')" style="white-space: normal; color:red">La imagen es requerida.</p>

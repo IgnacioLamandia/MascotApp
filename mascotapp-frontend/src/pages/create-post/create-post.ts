@@ -5,7 +5,7 @@ import { PostProvider } from '../../providers/posts/post';
 import { HomePage } from '../home/home';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import { GeoCoderProvider } from '../../providers/geocoder/geocoder';
-import { Camera,CameraOptions } from '@ionic-native/camera';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 declare var google;
@@ -27,7 +27,7 @@ declare var google;
 })
 
 export class CreatePostPage {
-	imagePost:any = "assets/imgs/icon-no-image.svg";
+	imagePost:string = "assets/imgs/icon-no-image.svg";
 	post = {title:'', description:'', image:'', latitude:0, longitude:0, address:'', category: Category.PERDIDO};
 	category = Object.keys(Category);
 	categories = this.category.slice(this.category.length/2);
@@ -141,7 +141,7 @@ export class CreatePostPage {
 		}
 
 		returnHome() {
-			let confirmacion= this.alrtCtrl.create({
+			/*let confirmacion= this.alrtCtrl.create({
 				title:'Confirmacion',
 				message: 'Se publico correctamente',
 				buttons:[{
@@ -151,11 +151,43 @@ export class CreatePostPage {
 					}
 				}]
 			});
-			confirmacion.present();
+			confirmacion.present();*/
 		}
 
-	takeImage(){
-    const options: CameraOptions = {
+		getPicture(){
+	    let options: CameraOptions = {
+	      destinationType: this.camera.DestinationType.DATA_URL,
+	      targetWidth: 1000,
+	      targetHeight: 1000,
+	      quality: 100
+	    }
+	    this.camera.getPicture( options )
+		    .then(imageData => {
+		      this.imagePost = `data:image/jpeg;base64,${imageData}`;
+		    })
+	    .catch(error =>{
+	      console.error( error );
+	    });
+	  }
+
+
+	/*takeImage(){
+		console.error( 'takeImage' );
+		let options: CameraOptions = {
+			destinationType: this.camera.DestinationType.DATA_URL,
+			targetWidth: 1000,
+			targetHeight: 1000,
+			quality: 100
+		}
+		this.camera.getPicture( options )
+		.then(imageData => {
+			this.post.image = `data:image/jpeg;base64,${imageData}`;
+		})
+		.catch(error =>{
+			console.error( error );
+		});
+  }*/
+    /*const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
@@ -163,12 +195,12 @@ export class CreatePostPage {
     }
 
     this.camera.getPicture(options).then((imageData) => {
-
+		  console.log('Hola');
      let newImage = 'data:image/jpeg;base64,' + imageData;
      this.post.image = newImage;
     }, (err) => {
       console.log(err);
-    });
-  }
+    });*/
+
 
 }

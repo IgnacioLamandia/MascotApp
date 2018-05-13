@@ -12,7 +12,6 @@ import { PostInfoPage } from '../post-info/post-info';
 })
 
 export class HomePage {
-
   public posts : any;
   public loaded : boolean = false;
   imgWidth : any;
@@ -25,7 +24,7 @@ export class HomePage {
 
   ngOnInit(){
     this.posts=[];
-    this.getAllPosts();
+    //this.getAllPosts();
     if(this.plt.is('core')){
       this.imgHeight="200";
       this.imgWidth="200";
