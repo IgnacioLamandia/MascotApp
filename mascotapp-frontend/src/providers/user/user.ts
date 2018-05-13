@@ -8,7 +8,7 @@ import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class UserProvider {
-  apiUrl = "http://localhost:9000/";
+  apiUrl = "http://192.168.43.16:9000/";
   constructor(public http: HttpClient) {console.log('UserProvider Provider'); }
 
   saveUser(data) {
