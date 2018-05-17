@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import mascotapp.model.poststates.State;
+
 @Entity
 public class User {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,5 +30,10 @@ public class User {
 		this.email = email;
 		this.external_id = external_id;
 		this.posts = posts;
+	}
+	
+	public void changeState(User otherUser, Post post, State state) {
+		post.setState(state);
+		post.request(this, otherUser);
 	}
 }

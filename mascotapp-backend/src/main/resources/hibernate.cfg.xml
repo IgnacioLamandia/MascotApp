@@ -31,7 +31,17 @@
 		<property name="hibernate.hbm2ddl.auto">create-drop</property>
 		<mapping class="mascotapp.model.User" /> 
 		<mapping class="mascotapp.model.Post" />
-		<mapping class="mascotapp.model.Comment" /> 
+		<mapping class="mascotapp.model.Comment" />
+		
+		<mapping class="mascotapp.model.poststates.State" />
+		<mapping class="mascotapp.model.poststates.NewPostState" /> 
+		<mapping class="mascotapp.model.poststates.RequestPostState" />
+		<mapping class="mascotapp.model.poststates.RequestConfirmedPostState" />
+		<mapping class="mascotapp.model.poststates.RequestDeclinePostState" />
+		<mapping class="mascotapp.model.poststates.CollectPostState" />
+		<mapping class="mascotapp.model.poststates.CollectDonePostState" />
+		<mapping class="mascotapp.model.poststates.CollectNotDonePostState" />
+		
 		
 	</session-factory>
 </hibernate-configuration>

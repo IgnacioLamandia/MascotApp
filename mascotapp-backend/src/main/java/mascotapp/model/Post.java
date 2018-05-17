@@ -13,6 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import mascotapp.model.poststates.NewPostState;
+import mascotapp.model.poststates.State;
 
 @Entity
 public class Post {
@@ -30,6 +34,8 @@ public class Post {
 	public Category category;
 	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	public Set<Comment> comments;
+	@OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	public State state;
 	
 	public Post() {		
 	}
@@ -45,6 +51,7 @@ public class Post {
 		this.address = address;
 		this.category = category;
 		this.comments = new HashSet<Comment>();
+		this.state = new NewPostState();
 	}
 
 	public void setTitle(String title) {
@@ -79,7 +86,15 @@ public class Post {
 		this.comments = comments;
 	}
 	
+	public void setState(State state) {
+		this.state = state;
+	}
+	
 	public void addComment(Comment newComment) {
 		this.comments.add(newComment);		
+	}
+	
+	public void request(User owner, User otherUser) {
+		this.state.handle(owner, otherUser, this);
 	}
 }
