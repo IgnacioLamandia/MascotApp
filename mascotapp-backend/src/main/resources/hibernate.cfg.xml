@@ -5,22 +5,22 @@
 <hibernate-configuration>
 	<session-factory>
 	
-		<!-- 
+		 
 		<property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://ec2-174-129-41-64.compute-1.amazonaws.com:5432/df09srd7p8hj4f</property>
-		<property name="connection.username">sviufkkwmapgeo</property>
-		<property name="connection.password">00943ea16c38909ce88ead941e6b96caef713788c36e090b5be3bd7b70ddea5a</property>
+        <property name="connection.url">jdbc:postgresql://ec2-107-22-168-211.compute-1.amazonaws.com:5432/d72lst8cv1i1gb</property>
+		<property name="connection.username">rsgkexhyxpmmzb</property>
+		<property name="connection.password">cf5a436920c5e38e7c3d4956789e430a127638e5eb80f35acf23e594a48a0b6e</property>
 
 		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-		-->
-        
+		
+        <!--
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="connection.url">jdbc:mysql://localhost:3306/mascotapp</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">root</property>
 
 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
-		
+		-->
 		
 		<!-- Disable the second-level cache -->
 		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
