@@ -76,6 +76,7 @@ public class PostController {
 		currentPost.setAddress(post.address);
 		currentPost.setCategory(post.category);
 		currentPost.setComments(post.comments);
+		currentPost.setState(post.state);
 
 		postService.update(currentPost);
 		return new ResponseEntity<Post>(currentPost, HttpStatus.OK);
