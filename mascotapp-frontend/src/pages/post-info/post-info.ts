@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { Post } from '../../model/Post';
+import { Post, PostState } from '../../model/Post';
 import { PostProvider } from '../../providers/posts/post';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HomePage } from '../home/home';
@@ -134,6 +134,71 @@ export class PostInfoPage {
 
   editPost(){
     this.navCtrl.push(EditPostPage,{ id : this.post.id });
+  }
+
+  isNotMyPostAndNewState(post: Post) {
+    //agregar condicion para ver que NO es mi post
+    return post.state == PostState['0']; //lo tuve que poner asi pq no me toma el 0 solo
+  }
+
+  isMyPostAndRequestState(post: Post){
+    //agregar condicion para ver que ES mi post
+    return post.state == 1;
+  }
+
+  isNotMyPostAndRequestConfirmedState(post: Post) {
+    //agregar condicion para ver que NO es mi post
+    return post.state == 2;
+  }
+ 
+  isMyPostAndCollectState(post: Post) {
+    //agregar condicion para ver que ES mi post
+    return post.state == 3;
+  }
+
+  isClosed(post: Post) {
+    return post.state == 4;
+    //VER SI GENERAR HISTORIAL O ALGO ASI
+  }
+
+  requestPost(post: Post) {
+    post.state = PostState.Request;
+    this.postProvider.updatePost(post.id, post);
+    console.log(post.state);
+    console.log(post);
+  }
+
+  decline(post: Post) {
+    post.state = PostState.New;
+    this.postProvider.updatePost(post.id, post);
+  }
+
+  confirmRequest(post: Post) {
+    post.state = PostState.RequestConfirmed;
+    this.postProvider.updatePost(post.id, post);
+    console.log(post);
+    console.log(post.state);
+  }
+
+  collectPost(post: Post) {
+    post.state = PostState.Collect;
+    this.postProvider.updatePost(post.id, post);
+    console.log(post);
+    console.log(post.state);
+  }
+/*
+  collectNotDone(post: Post) {
+    post.state = PostState.New;
+    this.postProvider.updatePost(post.id, post);
+    console.log(post);
+    console.log(post.state);
+  }
+*/
+  collectDone(post: Post) {
+    post.state = PostState.CollectDone;
+    this.postProvider.updatePost(post.id, post);
+    console.log(post);
+    console.log(post.state);
   }
 
 }

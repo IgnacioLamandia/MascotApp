@@ -21,6 +21,26 @@
        <ion-icon name="pin"></ion-icon> {{post?.address}}
       </ion-card-content>
     </div>
+    <!-- Botones para cambiar estados -->
+    <div class="request-button" *ngIf="isNotMyPostAndNewState(post)">
+      <button ion-button block color="secondary" (click)="requestPost(post)"> Solicitar </button>
+    </div>
+
+    <div class="confirm-decline-request-buttons" *ngIf="isMyPostAndRequestState(post)">
+      <button ion-button block color="danger" (click)="decline(post)"> Denegar </button>
+      <button ion-button block color="secondary" (click)="confirmRequest(post)"> Confirmar </button>
+    </div>
+
+    <div class="collect-button" *ngIf="isNotMyPostAndRequestConfirmedState(post)">
+      <button ion-button block color="danger" (click)="decline(post)"> Denegar </button>
+      <button ion-button block color="secondary" (click)="collectPost(post)"> Retirar </button>
+    </div>
+
+    <div class="done-notDone-collect-buttons" *ngIf="isMyPostAndCollectState(post)">
+      <button ion-button block color="danger" (click)="decline(post)"> No retiro </button>
+      <button ion-button block color="secondary" (click)="collectDone(post)"> Confirmar retiro </button>
+    </div>
+    <div class="close-post" *ngIf="isClosed(post)"> CERRADO </div>
   </ion-card-content>
   </ion-card>
 

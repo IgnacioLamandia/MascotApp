@@ -54,44 +54,4 @@ export class HomePage {
   viewPost(post:Post){
     this.navCtrl.push(PostInfoPage,{ post : post });
   }
-
-  isNotMyPostAndNewState() {
-    return true;
-  }
-
-  isMyPostAndRequestState(){
-    return true;
-  }
-
-  isNotMyPostAndRequestState() {
-    return true;
-  }
- 
-  isMyPostAndCollectState() {
-    return true;
-  }
-
-  requestPost() {
-  
-  }
-
-  declineRequest() {
-
-  }
-
-  confirmRequest() {
-
-  }
-
-  collectePost() {
-
-  }
-
-  collecteNotDone() {
-
-  }
-
-  collecteDone() {
-
-  }
 }

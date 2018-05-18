@@ -21,25 +21,6 @@
         <button ion-button (click)="viewPost(post)">  <ion-icon name="paw"></ion-icon>
             Ver m&aacute;s
         </button>
-<!-- Botones para cambiar estados -->
-    <div class="request-button" *ngIf="isNotMyPostAndNewState()">
-      <button ion-button block color="secondary" (click)="requestPost()"> Solicitar </button>
-    </div>
-
-    <div class="confirm-decline-request-buttons" *ngIf="isMyPostAndRequestState()">
-      <button ion-button block color="danger" (click)="declineRequest()"> Denegar </button>
-      <button ion-button block color="secondary" (click)="confirmRequest()"> Confirmar </button>
-    </div>
-
-    <div class="collect-button" *ngIf="isNotMyPostAndRequestState()">
-      <button ion-button block color="secondary" (click)="collectPost()"> Retirar </button>
-    </div>
-
-    <div class="done-notDone-collect-buttons" *ngIf="isMyPostAndCollectState()">
-      <button ion-button block color="danger" (click)="collecteNotDone()"> No retiro </button>
-      <button ion-button block color="secondary" (click)="collectDone()"> Confirmar retiro </button>
-    </div>
-
       </ion-card-content>
     </ion-card>
   </div>
