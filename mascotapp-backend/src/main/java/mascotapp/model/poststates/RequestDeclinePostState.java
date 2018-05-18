@@ -11,7 +11,8 @@ public class RequestDeclinePostState extends State {
 
 	@Override
 	public void handle(User owner, User otherUser, Post post) {
-		post.setState(new NewPostState());
+		
+		//post.setState(new NewPostState());
 		
 		String subject = "Solicitud de xxxxxxxx"; // ver q poner en x
 		String text = "El usuario " + owner.name + " cancelo su solicitud de " + post.title + ".";

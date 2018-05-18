@@ -70,9 +70,9 @@ public class HibernateDataService {
 		Comment comment1p6 = new Comment("Hola, creo que ese es mi perro. Me contactare con vos por privado.", "Rosario", "rosario@outlook.com");
 		post6.addComment(comment1p6);
 		
-		post2.setState(new RequestPostState());
-		post3.setState(new CollectPostState());
-		post6.setState(new RequestPostState());
+//		post2.setState(new RequestPostState());
+//		post3.setState(new CollectPostState());
+//		post6.setState(new RequestPostState());
 
 		postDAO.save(post4);
 		postDAO.save(post5);

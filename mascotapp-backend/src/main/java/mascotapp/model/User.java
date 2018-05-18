@@ -31,9 +31,10 @@ public class User {
 		this.external_id = external_id;
 		this.posts = posts;
 	}
-	
+/*	
 	public void changeState(User otherUser, Post post, State state) {
 		post.setState(state);
 		post.request(this, otherUser);
 	}
+*/
 }

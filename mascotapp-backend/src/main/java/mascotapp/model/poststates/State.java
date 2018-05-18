@@ -22,8 +22,8 @@ public abstract class State {
 	 	3.1- RequestConfirmedPostState (avanza a 4) 
 	 	3.2- RequestDeclinePostState (vuelve a 1)
 	 	4- CollectPostState (avanza a 5.1 o 5.2)
-	 	5.1- CollectDone (FINALIZA)
-	 	5.2- CollectNotDone (vuelve a 1)
+	 	5.1- CollectDonePostState (FINALIZA)
+	 	5.2- CollectNotDonePostState (vuelve a 1)
 	 */
 	
  	public abstract void handle(User owner, User otherUser, Post post);
