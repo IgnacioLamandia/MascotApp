@@ -17,7 +17,7 @@ import mascotapp.model.User;
 import mascotapp.service.UserService;
 
 public class UserServiceTest {
-	
+/*	
 	private UserService service;
 	
 	@Before
@@ -110,4 +110,5 @@ public class UserServiceTest {
 	public void dropAll() {
 		service.deleteAll();
 	}
+*/
 }

@@ -18,7 +18,7 @@ import mascotapp.service.HibernateDataService;
 import mascotapp.service.PostService;
 
 public class PostServiceTest {
-
+/*
 	private HibernateDataService service;
 	private PostService postService;
 	
@@ -71,5 +71,6 @@ public class PostServiceTest {
 	@After
 	public void dropAll() {
 		postService.deleteAll();
-	}	
+	}
+*/	
 }
