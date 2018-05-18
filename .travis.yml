@@ -1,9 +1,17 @@
 language: java
 sudo: required
+cache: 
+  directories:
+    - $HOME/.m2
 jdk:
   - oraclejdk8
+services:
+  - postgresql
+before_script:
+  - psql -c "CREATE DATABASE mascotapp;" -U postgres
 install:
-  - cd mascotapp-backend && mvn clean install -DskipTests=true -Dmaven.compiler.target=1.8 -Dmaven.compiler.source=1.8
+  - cd mascotapp-backend
+  - mvn clean install -Dmaven.compiler.target=1.8 -Dmaven.compiler.source=1.8 -DJDBC_DATABASE_URL=jdbc:postgresql://localhost/d72lst8cv1i1gb
 deploy:
   - provider: heroku
     skip_cleanup: true
