@@ -15,7 +15,11 @@
     <ion-item (click)="newPost()">
 			<ion-icon name="paw" item-left></ion-icon>
 			Nueva publicación
-		</ion-item>
+    </ion-item>
+    <ion-item (click)="myPosts()" *ngIf="auth.authenticated">
+        <ion-icon name="folder-open" item-left></ion-icon>
+        Mis Posts
+      </ion-item>
 		<ion-item (click)="login()" *ngIf="!auth.authenticated">
 			<ion-icon name="log-in" item-left></ion-icon>
 			Iniciar sesíon

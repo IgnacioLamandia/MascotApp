@@ -24,7 +24,7 @@ export class HomePage {
 
   ngOnInit(){
     this.posts=[];
-    this.getAllPosts();
+    //this.getAllPosts();
     if(this.plt.is('core')){
       this.imgHeight="200";
       this.imgWidth="200";

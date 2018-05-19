@@ -25,6 +25,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { AuthService } from '../services/auth.service';
 import { Toast } from '@ionic-native/toast';
 import { EditPostPage } from '../pages/edit-post/edit-post';
+import { MyPostsPage } from '../pages/my-posts/my-posts';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { EditPostPage } from '../pages/edit-post/edit-post';
     LoginPage,
     CreatePostPage,
     PostInfoPage,
-    EditPostPage
+    EditPostPage,
+    MyPostsPage
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { EditPostPage } from '../pages/edit-post/edit-post';
     CategoriesPage,
     CreatePostPage,
     PostInfoPage,
-    EditPostPage
+    EditPostPage,
+    MyPostsPage
 
   ],
   providers: [

@@ -10,6 +10,7 @@ import { PostProvider } from '../providers/posts/post';
 import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../services/auth.service';
 import { Toast } from '@ionic-native/toast';
+import { MyPostsPage } from '../pages/my-posts/my-posts';
 
 @Component({
   templateUrl: 'app.html'
@@ -42,6 +43,11 @@ export class MyApp {
 
   openPage(page) {
     this.nav.setRoot(page.component);
+  }
+
+  myPosts(){
+    this.menu.close();
+    this.nav.setRoot(MyPostsPage);
   }
 
   login() {
