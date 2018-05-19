@@ -13,7 +13,7 @@
     <allow-intent href="geo:*" />
     <universal-links>
         <host name="https://jcss5.app.goo.gl" scheme="https" />
-        <host name="mascotapp-540df.firebaseio.com" scheme="https">
+        <host name="mascotapp-540df.firebaseapp.com" scheme="https">
             <path url="/__/auth/callback" />
         </host>
     </universal-links>
@@ -109,4 +109,5 @@
     <engine name="android" spec="6.4.0" />
     <engine name="browser" spec="5.0.3" />
     <engine name="ios" spec="4.5.4" />
+    <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
 </widget>

@@ -113,7 +113,8 @@ export class CreatePostPage {
 		}
 
 		getPosition() {
-			this.geolocation.getCurrentPosition().then(response => {
+			console.log('Get position');
+			this.geolocation.getCurrentPosition({ timeout: 30000 }).then(response => {
 				var position: Geoposition = response;
 				this.post.latitude = position.coords.latitude;
 				this.post.longitude = position.coords.longitude;
