@@ -55,4 +55,10 @@ public class PostService {
 		postDAO.deleteAll();			
 	}
 
+	@Transactional
+	public List<Post> getAllFromUser(String id) {
+		
+		return postDAO.getAllFromUser(id);
+	}
+
 }

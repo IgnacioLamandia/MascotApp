@@ -27,7 +27,7 @@ public class UserServiceTest {
 	
 	@Test
 	public void itShouldBePossibleToSaveAnUser() {			
-		User anUser = new User("test name", "test@email.com", "12345", new HashSet<Post>());
+		User anUser = new User("test name", "test@email.com", "12345");
 		this.service.save(anUser);
 		List<User> users = this.service.getAll();	
 		User savedUser = users.get(0);
@@ -35,7 +35,6 @@ public class UserServiceTest {
 		Assert.assertEquals("test name", savedUser.name);
 		Assert.assertEquals("test@email.com", savedUser.email);
 		Assert.assertEquals("12345", savedUser.external_id);
-		Assert.assertEquals(0, savedUser.posts.size());
 	}
 	
 	@Test
@@ -49,7 +48,7 @@ public class UserServiceTest {
 		Set<Post> posts = new HashSet<Post>();
 		posts.add(aPost);
 		
-		User anUser = new User("test name", "test@email.com", "12345", posts);
+		User anUser = new User("test name", "test@email.com", "12345");
 		this.service.save(anUser);
 		
 		List<User> users = this.service.getAll();	
@@ -58,48 +57,46 @@ public class UserServiceTest {
 		Assert.assertEquals("test name", savedUser.name);
 		Assert.assertEquals("test@email.com", savedUser.email);
 		Assert.assertEquals("12345", savedUser.external_id);
-		Assert.assertEquals(1, savedUser.posts.size());
-		
-		Optional<Post> optionalPost = savedUser.posts.stream().findFirst();
-		Post savedPost = optionalPost.get();
-		Assert.assertEquals(1, posts.size());
-		Assert.assertEquals("title", savedPost.title);
-		Assert.assertEquals("description", savedPost.description);
-		Assert.assertEquals("image", savedPost.image);
-		Assert.assertEquals(1f, savedPost.latitude, 0);
-		Assert.assertEquals(2f, savedPost.longitude, 0);
-		Assert.assertEquals("address", savedPost.address);
-		Assert.assertEquals(Category.ENCONTRADO, savedPost.category);
-		Assert.assertEquals(1, savedPost.comments.size());
+//		Assert.assertEquals(1, savedUser.posts.size());
+//		
+//		Optional<Post> optionalPost = savedUser.posts.stream().findFirst();
+//		Post savedPost = optionalPost.get();
+//		Assert.assertEquals(1, posts.size());
+//		Assert.assertEquals("title", savedPost.title);
+//		Assert.assertEquals("description", savedPost.description);
+//		Assert.assertEquals("image", savedPost.image);
+//		Assert.assertEquals(1f, savedPost.latitude, 0);
+//		Assert.assertEquals(2f, savedPost.longitude, 0);
+//		Assert.assertEquals("address", savedPost.address);
+//		Assert.assertEquals(Category.ENCONTRADO, savedPost.category);
+//		Assert.assertEquals(1, savedPost.comments.size());
 	}
 	
 	@Test
 	public void itShouldBePossibleToObtainAUserByHisId() {			
-		User anUser = new User("test name", "test@email.com", "12345", new HashSet<Post>());
+		User anUser = new User("test name", "test@email.com", "12345");
 		this.service.save(anUser);
 		User savedUser = this.service.getById(anUser.id);
 		Assert.assertEquals("test name", savedUser.name);
 		Assert.assertEquals("test@email.com", savedUser.email);
 		Assert.assertEquals("12345", savedUser.external_id);
-		Assert.assertEquals(0, savedUser.posts.size());
 	}
 	
 	@Test
 	public void itShouldBePossibleToObtainAUserByHisExternalId() {			
-		User anUser = new User("test name", "test@email.com", "12345", new HashSet<Post>());
+		User anUser = new User("test name", "test@email.com", "12345");
 		this.service.save(anUser);
 		User savedUser = this.service.getByExternalId("12345");
 		Assert.assertEquals("test name", savedUser.name);
 		Assert.assertEquals("test@email.com", savedUser.email);
 		Assert.assertEquals("12345", savedUser.external_id);
-		Assert.assertEquals(0, savedUser.posts.size());
 	}
 	
 	@Test 
 	public void itShouldNotBePossibleToCreateTwoUsersWithTheSameExternalId() {			
-		User anUser = new User("test name", "test@email.com", "12345", new HashSet<Post>());
+		User anUser = new User("test name", "test@email.com", "12345");
 		this.service.save(anUser);		
-		User anUser2 = new User("test name 2", "test@email.com.ar", "12345", new HashSet<Post>());
+		User anUser2 = new User("test name 2", "test@email.com.ar", "12345");
 		this.service.upsertUser(anUser2);
 		
 		List<User> savedUsers = this.service.getAll();

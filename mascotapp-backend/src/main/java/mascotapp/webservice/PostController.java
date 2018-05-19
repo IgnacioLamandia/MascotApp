@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import mascotapp.model.Category;
 import mascotapp.model.Comment;
 import mascotapp.model.Post;
+import mascotapp.model.User;
 import mascotapp.service.PostService;
+import mascotapp.service.UserService;
 
 @CrossOrigin
 @RestController
@@ -24,6 +26,9 @@ public class PostController {
 
 	@Autowired
 	PostService postService;
+	
+	@Autowired
+	UserService userService;
 
 	@RequestMapping(value = "/posts", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Post>> getAll() {
@@ -33,9 +38,21 @@ public class PostController {
 		}
 		return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
 	}
+	
+	
+	@RequestMapping(value = "/fromUser/{idUser}/posts", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Post>> getAllFromUser(@PathVariable("idUser") String id) {
+		List<Post> posts = this.postService.getAllFromUser(id);
+		if (posts.isEmpty() || posts == null) {
+			return new ResponseEntity<List<Post>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
+	}
 
-	@RequestMapping(value = "/posts", method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<Void> savePost(@RequestBody Post post) throws Exception {
+	@RequestMapping(value = "/{idUser}/posts", method = RequestMethod.POST, consumes = "application/json")
+	public ResponseEntity<Void> savePost(@RequestBody Post post, @PathVariable("idUser") String id) throws Exception {
+		User user = this.userService.getByExternalId(id);
+		post.setCreator(user);
 		this.postService.save(post);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
@@ -76,7 +93,6 @@ public class PostController {
 		currentPost.setAddress(post.address);
 		currentPost.setCategory(post.category);
 		currentPost.setComments(post.comments);
-		currentPost.setState(post.state);
 
 		postService.update(currentPost);
 		return new ResponseEntity<Post>(currentPost, HttpStatus.OK);
@@ -104,3 +120,4 @@ public class PostController {
 	    return new ResponseEntity<Post>(currentPost, HttpStatus.OK); 
 	  } 
 }
+
