@@ -62,7 +62,6 @@ export class LoginPage {
   }
 
   getUser(user) {
-    console.log(user);
     if(user.displayName) {
       this.user.name = user.displayName;
     }
@@ -72,9 +71,10 @@ export class LoginPage {
     this.user.email = user.email;
     this.user.external_id = user.uid;
     this.userProvider.saveUser(this.user).then((result) => {
-      this.navCtrl.setRoot(HomePage);
+      console.log(result);
     }, (err) => {
       console.log(err);
     });
+    this.navCtrl.pop();
   }
 }

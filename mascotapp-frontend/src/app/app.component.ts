@@ -58,13 +58,7 @@ export class MyApp {
 
   newPost() {
     this.menu.close();
-    if(this.auth.authenticated) {
-      this.nav.setRoot(CreatePostPage);
-    }
-    else {
-      //this.showToast('Tienes que iniciar seción');
-      this.nav.setRoot(LoginPage);
-    }
+    this.nav.setRoot(CreatePostPage);
   }
 
   logout() {
@@ -74,7 +68,7 @@ export class MyApp {
   }
 
   home(){
-    this.nav.push(HomePage);
+    this.nav.setRoot(HomePage);
   }
 
   showToast(message) {

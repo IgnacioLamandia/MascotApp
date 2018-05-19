@@ -4,8 +4,10 @@ import { Post, Category } from '../../model/Post';
 import { PostProvider } from '../../providers/posts/post';
 import { HomePage } from '../home/home';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+import { AuthService } from '../../services/auth.service';
 import { GeoCoderProvider } from '../../providers/geocoder/geocoder';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { LoginPage } from '../login/login';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 declare var google;
@@ -38,7 +40,8 @@ export class CreatePostPage {
   	constructor(private alrtCtrl:AlertController, public navCtrl: NavController,
 			public navParams: NavParams, public restPosts: PostProvider, private camera: Camera,
 			private geolocation: Geolocation, private geoCoder: GeoCoderProvider,
-			private formBuilder: FormBuilder, private alertCtrl:AlertController) {
+			private formBuilder: FormBuilder, private alertCtrl:AlertController,
+		  private auth: AuthService) {
 			this.postProvider = restPosts;
 
 			this.formPost = this.formBuilder.group({
@@ -48,6 +51,12 @@ export class CreatePostPage {
 				category:[this.postData['category'],[Validators.required]],
 			})
   	}
+
+		ngOnInit(){
+			if(!this.auth.authenticated) {
+				this.navCtrl.push(LoginPage);
+			}
+	  }
 
 		@ViewChild('addressInput', { read: ElementRef })
 		public searchElementRef;
