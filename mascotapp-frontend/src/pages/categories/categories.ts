@@ -49,7 +49,7 @@ export class CategoriesPage {
     let loading = this.loadingCtrl.create({content:"Cargando..."});
     loading.present();
     this.postProvider.getAllPosts()
-      .then(data => {
+      .subscribe(data => {
         this.posts = data;
         this.getPerdidos();
         this.getEncontrados();

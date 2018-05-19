@@ -1,46 +1,22 @@
-
 <ion-header>
   <ion-navbar>
     <ion-title>Publicaci&oacute;n</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding >
+<ion-content>
 <!--Informacion del post-->
-  <ion-card>
+  <ion-card style="width: 100%;padding: 0%">
       <ion-card-title text-center>{{post?.category}}</ion-card-title>
       <img id="image" src="data:image/jpg;base64,{{post.image}}"  [width]="imgWidth" [height]="imgHeight"/>
     <ion-card-content>
-    <div class="container">
         <ion-card-title>{{post?.title}}</ion-card-title>
-    </div>
-    <div class="container">
       <ion-card-content>
-       <h4>{{post?.description}}</h4>
-       <br>
-       <ion-icon name="pin"></ion-icon> {{post?.address}}
+        <ion-item><h4>{{post?.description}}</h4></ion-item>
+        <ion-item style="height: 80px;"><ion-icon name="pin"></ion-icon><p> {{post?.address}}</p></ion-item>
+        <ion-item>Publicado por: {{post?.creator?.name}}</ion-item>
+
       </ion-card-content>
-    </div>
-    <!-- Botones para cambiar estados -->
-    <div class="request-button" *ngIf="isNotMyPostAndNewState(post)">
-      <button ion-button block color="secondary" (click)="requestPost(post)"> Solicitar </button>
-    </div>
-
-    <div class="confirm-decline-request-buttons" *ngIf="isMyPostAndRequestState(post)">
-      <button ion-button block color="danger" (click)="decline(post)"> Denegar </button>
-      <button ion-button block color="secondary" (click)="confirmRequest(post)"> Confirmar </button>
-    </div>
-
-    <div class="collect-button" *ngIf="isNotMyPostAndRequestConfirmedState(post)">
-      <button ion-button block color="danger" (click)="decline(post)"> Denegar </button>
-      <button ion-button block color="secondary" (click)="collectPost(post)"> Retirar </button>
-    </div>
-
-    <div class="done-notDone-collect-buttons" *ngIf="isMyPostAndCollectState(post)">
-      <button ion-button block color="danger" (click)="decline(post)"> No retiro </button>
-      <button ion-button block color="secondary" (click)="collectDone(post)"> Confirmar retiro </button>
-    </div>
-    <div class="close-post" *ngIf="isClosed(post)"> CERRADO </div>
   </ion-card-content>
   </ion-card>
 
@@ -48,9 +24,9 @@
     <div id="map"></div>
 
 <!-- Botones de Eliminar y Editar-->
- 
+
     <div class="edit-delete-buttons" *ngIf="isMyPost()">
-      <ion-row> 
+      <ion-row>
         <ion-col>
           <ion-item>
             <button ion-button block color="danger" (click)="deletePost()"><ion-icon name='trash'></ion-icon> Eliminar</button>
@@ -61,9 +37,9 @@
             <button ion-button block color="secondary" (click)="editPost()"><ion-icon name='clipboard'></ion-icon> Editar</button>
           </ion-item>
         </ion-col>
-      </ion-row> 
+      </ion-row>
     </div>
-  
+
 <!-- Lista de comentarios-->
     <div class="comment-list" *ngIf="isEmptyComments()">
       <h4>Comentarios:</h4>
@@ -81,7 +57,7 @@
     <div class="comment-box" [formGroup]="formularioComment" (ngSubmit)="saveData()" novalidate>
       <ion-card>
       <ion-card-title text-center>Deja tu comentario</ion-card-title>
-      
+
     	<ion-list>
     	  <ion-item>
           <ion-label color="primary" class="labelEdicion" floating> Mensaje </ion-label>

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { Post, PostState } from '../../model/Post';
+import { Post } from '../../model/Post';
 import { PostProvider } from '../../providers/posts/post';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HomePage } from '../home/home';
 import { EditPostPage } from '../edit-post/edit-post';
+import { AuthService } from '../../services/auth.service';
 
 declare var google;
 
@@ -26,7 +27,7 @@ export class PostInfoPage {
   formularioComment : FormGroup;
   commentData:any[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restPosts: PostProvider,private fb: FormBuilder, private alertCtrl:AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restPosts: PostProvider,private fb: FormBuilder, private alertCtrl:AlertController,private auth: AuthService) {
     this.imgHeight="300";
     this.imgWidth="300";
   	this.post = navParams.get("post");
@@ -70,7 +71,7 @@ export class PostInfoPage {
   }
 
   isMyPost() {
-    return true; //ver logica de como definir cuando es mi post
+    return this.post.creator && this.auth.getUser() && (this.auth.getUser().uid ==this.post.creator.external_id); //ver logica de como definir cuando es mi post
   }
 
   isEmptyComments() {
@@ -136,7 +137,7 @@ export class PostInfoPage {
     this.navCtrl.push(EditPostPage,{ id : this.post.id });
   }
 
-  isNotMyPostAndNewState(post: Post) {
+ /*isNotMyPostAndNewState(post: Post) {
     //agregar condicion para ver que NO es mi post
     return post.state == PostState['0']; //lo tuve que poner asi pq no me toma el 0 solo
   }
@@ -150,7 +151,7 @@ export class PostInfoPage {
     //agregar condicion para ver que NO es mi post
     return post.state == 2;
   }
- 
+
   isMyPostAndCollectState(post: Post) {
     //agregar condicion para ver que ES mi post
     return post.state == 3;
@@ -186,19 +187,19 @@ export class PostInfoPage {
     console.log(post);
     console.log(post.state);
   }
-/*
+
   collectNotDone(post: Post) {
     post.state = PostState.New;
     this.postProvider.updatePost(post.id, post);
     console.log(post);
     console.log(post.state);
   }
-*/
+
   collectDone(post: Post) {
     post.state = PostState.CollectDone;
     this.postProvider.updatePost(post.id, post);
     console.log(post);
     console.log(post.state);
-  }
+  }*/
 
 }

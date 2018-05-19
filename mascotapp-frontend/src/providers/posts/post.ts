@@ -7,31 +7,28 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from "rxjs/Observable";
 import { urlToNavGroupStrings } from 'ionic-angular/navigation/url-serializer';
+import { AuthService } from '../../services/auth.service';
 
 @Injectable()
 export class PostProvider {
-  apiUrl = "http://0.0.0.0:9000/";
-  constructor(public http: HttpClient) {console.log('Hello PostProvider Provider'); }
+  apiUrl = "http://localhost:9000/";
+  constructor(public http: HttpClient,private auth: AuthService) {console.log('Hello PostProvider Provider'); }
 
-  getAllPosts() {
-    return new Promise(resolve => {
-      this.http.get(this.apiUrl+'posts').subscribe(data => {
-        resolve(data);
-      }, err => {
-        console.log(err);
-      });
-    });
+  getAllPosts(): Observable<any> {
+    return this.http.get(this.apiUrl+'posts');
+  }
+
+  getAllPostsFromUser(): Observable<any>{
+    return this.http.get(this.apiUrl+'fromUser/'+ this.auth.getUser().uid + "/posts");
   }
 
   getPostById(id): Observable<any>{
     console.log(id);
     let url = `${this.apiUrl}post/${id}`;
     return this.http.get(url, id);
-}
+  }
 
-  savePost(data) {
-
-    return new Promise((resolve, reject) => {
+  savePost(data) : Observable<any>{
       let reqOpts = {
         headers: {
           'Content-Type': 'application/json',
@@ -40,14 +37,7 @@ export class PostProvider {
           params: new HttpParams()
       };
 
-      console.log(data);
-      this.http.post(this.apiUrl+'posts', JSON.stringify(data), reqOpts)
-        .subscribe(res => {
-          resolve(res);
-        }, (err) => {
-          reject(err);
-        });
-    });
+      return this.http.post(this.apiUrl+ this.auth.getUser().uid +'/posts', JSON.stringify(data), reqOpts);
   }
 
   getAllByCategory(category) {

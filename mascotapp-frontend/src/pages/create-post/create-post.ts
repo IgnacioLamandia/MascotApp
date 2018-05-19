@@ -37,13 +37,13 @@ export class CreatePostPage {
 
   	constructor(private alrtCtrl:AlertController, public navCtrl: NavController,
 			public navParams: NavParams, public restPosts: PostProvider, private camera: Camera,
-			private geolocation: Geolocation, private geoCoder: GeoCoderProvider, private fb: FormBuilder, private alertCtrl:AlertController) {
+			private geolocation: Geolocation, private geoCoder: GeoCoderProvider,
+			private formBuilder: FormBuilder, private alertCtrl:AlertController) {
 			this.postProvider = restPosts;
 
-			this.formPost = this.fb.group({
+			this.formPost = this.formBuilder.group({
 				title:[this.postData['title'],[Validators.required,Validators.minLength(4),Validators.maxLength(50)]],
 				description:[this.postData['description'],[Validators.required,Validators.minLength(5),Validators.maxLength(250)]],
-				image:[this.post['image'],[Validators.required]],
 				address:[this.post['address'],[Validators.required]],
 				category:[this.postData['category'],[Validators.required]],
 			})
@@ -96,9 +96,9 @@ export class CreatePostPage {
 
   	savePost(){
 			this.newPost();
-		  this.restPosts.savePost(this.post).then((result) => {
+		  this.restPosts.savePost(this.post).subscribe(result => {
 				this.returnHome();
-		  }, (err) => {
+		  }, err => {
 		    console.log(err);
 		  });
 		}
@@ -141,7 +141,7 @@ export class CreatePostPage {
 		}
 
 		returnHome() {
-			/*let confirmacion= this.alrtCtrl.create({
+			let confirmacion= this.alrtCtrl.create({
 				title:'Confirmacion',
 				message: 'Se publico correctamente',
 				buttons:[{
@@ -151,7 +151,7 @@ export class CreatePostPage {
 					}
 				}]
 			});
-			confirmacion.present();*/
+			confirmacion.present();
 		}
 
 		getPicture(){
@@ -169,38 +169,4 @@ export class CreatePostPage {
 	      console.error( error );
 	    });
 	  }
-
-
-	/*takeImage(){
-		console.error( 'takeImage' );
-		let options: CameraOptions = {
-			destinationType: this.camera.DestinationType.DATA_URL,
-			targetWidth: 1000,
-			targetHeight: 1000,
-			quality: 100
-		}
-		this.camera.getPicture( options )
-		.then(imageData => {
-			this.post.image = `data:image/jpeg;base64,${imageData}`;
-		})
-		.catch(error =>{
-			console.error( error );
-		});
-  }*/
-    /*const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-
-    this.camera.getPicture(options).then((imageData) => {
-		  console.log('Hola');
-     let newImage = 'data:image/jpeg;base64,' + imageData;
-     this.post.image = newImage;
-    }, (err) => {
-      console.log(err);
-    });*/
-
-
 }

@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { Nav,ModalController,NavParams,NavController ,Platform,Content, LoadingController } from 'ionic-angular';
-import { Post } from '../../model/Post';
+import { IonicPage, NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
 import { PostProvider } from '../../providers/posts/post';
+import { Post } from '../../model/Post';
 import { PostInfoPage } from '../post-info/post-info';
 
-@Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
-  styles:['home.scss'],
-  providers: [PostProvider]
-})
 
-export class HomePage {
+@IonicPage()
+@Component({
+  selector: 'page-my-posts',
+  templateUrl: '../home/home.html',
+})
+export class MyPostsPage {
+
   public posts : any;
   public loaded : boolean = false;
   imgWidth : any;
@@ -40,11 +40,11 @@ export class HomePage {
   getAllPosts() {
     let loading = this.loadingCtrl.create({content:"Cargando..."});
     loading.present();
-    this.postService.getAllPosts()
-      .subscribe(data => {
+    this.postService.getAllPostsFromUser()
+      .subscribe(data => { console.log(data);
         this.posts = data;
         loading.dismiss();
-      }, error => {console.log(error);loading.dismiss();});
+      },error => {this.posts = [];console.log(this.posts);loading.dismiss();});
   }
 
   search() {
@@ -54,4 +54,5 @@ export class HomePage {
   viewPost(post:Post){
     this.navCtrl.push(PostInfoPage,{ post : post });
   }
+
 }

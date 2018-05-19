@@ -4,11 +4,12 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>MascotApp</ion-title>
-    
+
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+  <h2 *ngIf="posts.length == 0">No existe ninguna publicacion.</h2>
   <div class="containerHome">
     <ion-card [ngClass]="{'ionic-container': isDesktop }" *ngFor="let post of posts" fixed>
       <img id="image" src="data:image/jpg;base64,{{post.image}}"  [width]="imgWidth" [height]="imgHeight"/>

@@ -9,7 +9,7 @@ export class Post {
   address: string;
   category: Category;
   comments: Comment[];
-  state: PostState;
+  creator:any;
 
 	constructor(
     title: string,
@@ -27,8 +27,7 @@ export class Post {
 		this.latitude = 0;
 		this.address = address;
 		this.category = category;
-    this.comments = [];
-    this.state = PostState['0'];
+		this.comments = [];
 	}
 }
 
@@ -50,18 +49,10 @@ export class Comment {
     name: string,
     email: string,
   	id?:number) {
-    
+
     this.id = id;
     this.text = text;
     this.name = name;
     this.email = email;
   }
-}
-
-  export enum PostState {
-    New,
-    Request,
-    RequestConfirmed,
-    Collect, 
-    CollectDone
 }
